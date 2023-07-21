@@ -32,28 +32,40 @@ class AuthController extends Controller
         ]);
 
         $token = $user->createToken('token-name')->plainTextToken;
+        $userResource = new \App\Http\Resources\User($user);
 
-        $user = User::all();
-        $userResource =\App\Http\Resources\User::collection($user);
-
-        $responseData = $userResource->toArray(request());
-
-
-        return response()->json(['Response' => $responseData, 'token' => $token], 201);
+        return response()->json([
+            'status' => true,
+            'pesan' => 'Berhasil Register',
+            'data' => $userResource,
+            'token' => $token], 201);
     }
+
 
 // Login user
     public function login(Request $request)
     {
         $credentials = $request->only('name', 'password');
+        $user = User::all();
+        $userResource = \App\Http\Resources\User::collection($user);
+
+        $responseData = $userResource->toArray(request());
 
         if (Auth::attempt($credentials)) {
             $user = Auth::guard('api')->user();
             $token = $user->createToken('token-name')->plainTextToken;
-            return response()->json(['user' => $user, 'token' => $token], 200);
+            return response()->json([
+                'status' => true,
+                'pesan' => 'Berhasil Login',
+                'data' => $userResource,
+                'token' => $token], 200);
         }
 
-        return response()->json(['message' => 'Unauthorized'], 401);
+
+        return response()->json([
+            'status' => false,
+            'pesan' => 'Gagal Login'
+        ], 401);
     }
 
 // Forgot password
