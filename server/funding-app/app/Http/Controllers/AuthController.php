@@ -18,7 +18,8 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255|unique:App\Models\User,name',
             'password' => 'required|string|min:8|confirmed',
-            'contact' => 'required|unique:App\Models\User,contact,|'
+            'email' => 'required|unique:App\Models\User,email',
+            'telpon' => 'required|unique:App\Models\User,telpon',
         ]);
 
         if ($validator->fails()) {
@@ -27,7 +28,8 @@ class AuthController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'contact' => $request->contact,
+            'email' => $request->email,
+            'telpon' => $request->telpon,
             'password' => bcrypt($request->password),
         ]);
 
@@ -58,7 +60,7 @@ class AuthController extends Controller
                 'status' => true,
                 'pesan' => 'Berhasil Login',
                 'data' => $userResource,
-                'token' => $token], 200);
+                'token' => $token], 201);
         }
 
 

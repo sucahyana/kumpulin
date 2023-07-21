@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('bio')->nullable();
-            $table->string('contact');
+            $table->string('contact')->nullable();
             $table->string('password');
             $table->string('photo')->nullable();
             $table->timestamps();
