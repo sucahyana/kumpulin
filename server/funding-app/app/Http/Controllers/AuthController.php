@@ -13,10 +13,12 @@ class AuthController extends Controller
 // Register new user
     public function register(Request $request)
     {
+
+
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:App\Models\User,name',
             'password' => 'required|string|min:8|confirmed',
-            'contact' => 'unique:App\Models\User,contact'
+            'contact' => 'required|unique:App\Models\User,contact,|'
         ]);
 
         if ($validator->fails()) {
@@ -25,21 +27,28 @@ class AuthController extends Controller
 
         $user = User::create([
             'name' => $request->name,
+            'contact' => $request->contact,
             'password' => bcrypt($request->password),
         ]);
 
         $token = $user->createToken('token-name')->plainTextToken;
 
-        return response()->json(['user' => $user, 'token' => $token], 201);
+        $user = User::all();
+        $userResource =\App\Http\Resources\User::collection($user);
+
+        $responseData = $userResource->toArray(request());
+
+
+        return response()->json(['Response' => $responseData, 'token' => $token], 201);
     }
 
 // Login user
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('name', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+            $user = Auth::guard('api')->user();
             $token = $user->createToken('token-name')->plainTextToken;
             return response()->json(['user' => $user, 'token' => $token], 200);
         }
