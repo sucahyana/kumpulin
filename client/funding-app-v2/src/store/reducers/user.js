@@ -34,6 +34,7 @@ const reducerUser = (state = initialState, action) => {
             localStorage.removeItem('token');
             return {
                 ...initialState,
+                isAuthenticated: false,
                 token: null
             };
 

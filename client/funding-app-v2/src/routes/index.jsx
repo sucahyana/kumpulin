@@ -22,6 +22,7 @@ const AppRoutes = () => {
         const token = localStorage.getItem('token');
         if (token) {
             dispatch(fetchUserData());
+
         }
     }, [dispatch]);
 

@@ -53,8 +53,8 @@ const Home = () => {
                         Ini Funding Kamu Loh!
                     </h2>
                     <div className="mt-4 flex flex-wrap gap-6 justify-center">
-                        {userEvents.length > 0 ? (
-                            userEvents.map((event) => (
+                        {userEvents?.length > 0 ? (
+                            userEvents?.map((event) => (
                                 <CardFeed key={event.id} event={event} userData={userData} />
                             ))
                         ) : (
@@ -72,7 +72,7 @@ const Home = () => {
                         Rekomendasi Acara
                     </h2>
                     <div className="mt-4 flex flex-wrap gap-6">
-                        {eventData.map((event) => (
+                        {eventData?.map((event) => (
                             <FeaturedCard key={event.id} data={event} />
                         ))}
                     </div>

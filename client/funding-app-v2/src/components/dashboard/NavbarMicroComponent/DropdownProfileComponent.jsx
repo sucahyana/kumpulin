@@ -28,7 +28,6 @@ function DropdownProfileComponent() {
             navigate('/login');
         } catch (error) {
             console.error("Error during logout:", error);
-            // Anda bisa menambahkan notifikasi kesalahan di sini
         }
     }, [dispatch, token, navigate]);
 
