@@ -12,20 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('events', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('event_id');
+            $table->uuid('id')->primary();
             $table->string('title');
             $table->text('description');
-            $table->decimal('amount', $precision = 10, $scale = 0);
-            $table->enum('category', ['po', 'ngumpul', 'arisan']);
+            $table->string('amount_person');
+            $table->string('amount_purpose')->nullable();
+            $table->enum('category', ['pre-order', 'travel', 'arisan']);
             $table->date('start_date');
             $table->date('end_date');
-            $table->integer('max_participant');
-            $table->unsignedBigInteger('creator_id');
-            $table->foreign('creator_id')->references('id')->on('users');
+            $table->unsignedInteger('max_participant');
+            $table->char('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();
         });
+
 
     }
 

@@ -7,8 +7,13 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
 
 /**
  * Class EventHistory
@@ -21,34 +26,33 @@ use Laravel\Passport\HasApiTokens;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  *
- * @property Event $event
+ * @property Events $event
  * @property User $user
  *
  * @package App\Models
  */
-class EventHistory extends Model
+class EventHistory extends Model implements AuthenticatableContract, \OwenIt\Auditing\Contracts\Auditable
 {
-    use \OwenIt\Auditing\Auditable;
-    use HasApiTokens;
+    use \OwenIt\Auditing\Auditable, HasApiTokens, Notifiable, Uuid, Authenticatable;
 
     protected $table = 'event_history';
     public $incrementing = false;
 
     protected $fillable = [
-        'id',
         'status',
         'description',
-        'user_id',
-        'event_id'
+        'id_user',
+        'id_event',
+        'action'
     ];
 
-    public function event()
+    public function events()
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Events::class, 'id_event',);
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_user',);
     }
 }

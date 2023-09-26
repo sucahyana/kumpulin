@@ -1,64 +1,97 @@
 <?php
 
+
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 
-class User extends Authenticatable
+
+/**
+ * Class User
+ *
+ * @property string $id
+ * @property string $name
+ * @property string|null $gender
+ * @property string $email
+ * @property string $telphone
+ * @property string $password
+ * @property string|null $profile_image
+ * @property string|null $cover_image
+ * @property string|null $bio
+ * @property Carbon|null $birth_date
+ * @property string|null $address
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ *
+ * @property EventHistory $event_history
+ * @property EventParticipant $event_participant
+ * @property Collection|events[] $events
+ * @property Collection|Notification[] $notifications
+ * @property Collection|UserContact[] $user_contacts
+ *
+ * @package App\Models
+ */
+class User extends Model implements AuthenticatableContract,Auditable
+
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,Uuid,Authenticatable,HasFactory,CanResetPassword;
+    use SoftDeletes;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'users';
+    public $incrementing = false;
+    public $keyType = 'string';
+    protected $auditExclude = [
+        'published',
+    ];
+
+    protected $casts = [
+        'birth_date' => 'datetime'
+    ];
+
+    protected $hidden = [
+        'password'
+    ];
+
     protected $fillable = [
         'name',
-        'password',
-        'bio',
-        'contact',
-        'photo',
+        'gender',
         'email',
-        'telpon'
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
+        'telphone',
         'password',
-        'remember_token',
+        'profile_image',
+        'cover_image',
+        'bio',
+        'birth_date',
+        'birth_place',
+        'address'
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-    ];
-    public function events()
+    public function event_history()
     {
-        return $this->hasMany(Event::class, 'creator_id');
+        return $this->hasOne(EventHistory::class, 'id_user');
     }
 
-    public function ratings()
+
+    public function event_participant()
     {
-        return $this->hasMany(Rating::class);
+        return $this->hasOne(EventParticipant::class, 'id_user');
     }
 
-    public function reviews()
+    public function Events()
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Events::class, 'id_user');
     }
 
     public function notifications()
@@ -66,9 +99,19 @@ class User extends Authenticatable
         return $this->hasMany(Notification::class);
     }
 
-    public function chats()
+
+    public function setPasswordAttribute($value)
     {
-        return $this->hasMany(Chat::class, 'sender_id')->orWhere('receiver_id', $this->id);
+        $this->attributes['password'] = bcrypt($value);
     }
+    public function contacts()
+    {
+        return $this->hasMany(UserContact::class,'id_user', 'id');
+    }
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
 
 }

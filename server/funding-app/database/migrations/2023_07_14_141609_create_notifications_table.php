@@ -11,14 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notifS', function (Blueprint $table) {
-            $table->id();
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->text('content');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->char('id_user');
+
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->char('id_event');
+
+            $table->foreign('id_event')->references('id')->on('events');
+            $table->boolean('is_read');
             $table->timestamps();
+            $table->softDeletes();
         });
-        
+
     }
 
     /**
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notifs');
+        Schema::dropIfExists('notifications');
     }
 };

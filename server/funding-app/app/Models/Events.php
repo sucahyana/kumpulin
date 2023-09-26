@@ -7,11 +7,16 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
+use OwenIt\Auditing\Contracts\Auditable;
 
 
 /**
@@ -39,11 +44,11 @@ use Laravel\Sanctum\HasApiTokens;
  *
  * @package App\Models
  */
-class Event extends Model
+class Events extends Model implements AuthenticatableContract,Auditable
 
 {
     use SoftDeletes;
-    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable;
+    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,uuid,Authenticatable;
     protected $table = 'events';
     public $incrementing = false;
 
@@ -62,31 +67,49 @@ class Event extends Model
         'start_date',
         'end_date',
         'max_participant',
-        'id_user'
+        'id_user',
+        'code_event'
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_user');
     }
+
 
     public function event_history()
     {
-        return $this->hasOne(EventHistory::class);
+        return $this->hasMany(EventHistory::class, 'id_event', 'id');
     }
 
     public function event_participant()
     {
-        return $this->hasOne(EventParticipant::class);
+        return $this->hasMany(EventParticipant::class,'id_event', 'id');
     }
 
-    public function events_media()
+    public function event_media()
     {
-        return $this->hasMany(EventMedia::class);
+        return $this->hasMany(EventMedia::class, 'id_event', 'id');
     }
 
     public function notifications()
     {
         return $this->hasMany(Notification::class);
     }
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'id_event', 'id');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($randomString) {
+
+            $uppercaseRandomString = Str::upper(Str::random(5));
+            $randomString->code_event = $uppercaseRandomString;
+        });
+    }
+
 }

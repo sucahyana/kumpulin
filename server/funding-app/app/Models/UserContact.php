@@ -1,14 +1,13 @@
 <?php
 
-/**
- * Created by Reliese Model.
- */
-
 namespace App\Models;
 
 use Carbon\Carbon;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use OwenIt\Auditing\Contracts\Auditable;
 
 /**
  * Class UserContact
@@ -24,17 +23,16 @@ use Laravel\Passport\HasApiTokens;
  *
  * @package App\Models
  */
-class UserContact extends Model
+class UserContact extends Model implements Auditable // Tambahkan ini
 {
-    use \OwenIt\Auditing\Auditable;
-    use HasApiTokens;
+    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,uuid;
 
     protected $table = 'user_contact';
 
     protected $fillable = [
         'type',
         'value',
-        'user_id'
+        'id_user'
     ];
 
     public function user()

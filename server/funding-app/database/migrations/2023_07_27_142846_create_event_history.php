@@ -12,7 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('event_history', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id');
+            $table->string('status')->nullable();
+            $table->string('description')->nullable();
+            $table->string('action')->nullable();
+            $table->char('id_user');
+
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->char('id_event');
+
+            $table->foreign('id_event')->references('id')->on('events');
             $table->timestamps();
         });
     }

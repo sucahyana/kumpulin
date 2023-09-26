@@ -1,58 +1,56 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\RatingController;
-use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\RewardController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\ChatController;
+use App\Http\Controllers\EventHistoryController;
+use App\Http\Controllers\EventParticipantController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
-// User Authentication Routes
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/forgot-password', [AuthController::class, 'forgotPassword']);
-Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+Route::prefix('v1')->group(function () {
+    // Auth routes
+    Route::prefix('auth')->group(function () {
+        Route::post('/register', [AuthController::class, 'register'])->name('register');
+        Route::post('/login', [AuthController::class, 'login'])->name('login');
+        Route::delete('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
+        Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
+        Route::middleware('auth:sanctum')->post('/reset-password', [AuthController::class, 'resetPassword'])->name('resetPassword');
+    });
 
-// Protected Routes (Require Authentication)
-Route::middleware('auth:sanctum')->group(function () {
-// Routes for User
-    Route::get('/users', [UserController::class, 'index']);
-    Route::post('/users', [UserController::class, 'store']);
-    Route::get('/users/{user}', [UserController::class, 'show']);
-    Route::put('/users/{user}', [UserController::class, 'update']);
-    Route::delete('/users/{user}', [UserController::class, 'destroy']);
+    // User routes
+    Route::middleware('auth:sanctum')->prefix('user')->group(function () {
+        Route::put('/basic', [UserController::class, 'updateBasicProfile'])->name('updateBasicProfile');
+        Route::put('/contact', [UserController::class, 'updateContactProfile'])->name('updateContactProfile');
+        Route::post('/photo', [UserController::class, 'uploadProfilePhoto'])->name('uploadProfilePhoto');
+        Route::post('/cover', [UserController::class, 'uploadProfileCover'])->name('uploadProfileCover');
+        Route::get('/',[AuthController::class, 'tokenTest']);
+        Route::get('/{user}',[UserController::class, 'show']);
+        Route::get('/search', [UserController::class, 'search'])->name('user.search');
+    });
 
-// Routes for Event
-    Route::get('/events', [EventController::class, 'index']);
-    Route::post('/events', [EventController::class, 'store']);
-    Route::get('/events/{event}', [EventController::class, 'show']);
-    Route::put('/events/{event}', [EventController::class, 'update']);
-    Route::delete('/events/{event}', [EventController::class, 'destroy']);
+    // Event routes
+    Route::middleware('auth:sanctum')->prefix('event')->group(function () {
+        Route::post('/', [EventController::class, 'createEvent'])->name('createEvent');
+        Route::get('/', [EventController::class, 'getAllEventsWithRelations'])->name('getAllEventsWithRelations');
+        Route::get('/{eventCode}/code', [EventController::class, 'getEventByCode'])->name('getEventByCode');
+        Route::post('/{eventCode}/code', [EventController::class, 'updateEvent'])->name('updateEvent');
+        Route::get('/{eventCode}/share', [EventController::class, 'share'])->name('shareEvent');
 
-// Routes for Rating
-    Route::post('/events/{event}/ratings', [RatingController::class, 'store']);
-    Route::put('/ratings/{rating}', [RatingController::class, 'update']);
-    Route::delete('/ratings/{rating}', [RatingController::class, 'destroy']);
+        Route::prefix('/{eventCode}/participants')->group(function () {
+            Route::post('/', [EventParticipantController::class, 'addParticipant'])->name('addParticipant');
+            Route::delete('/{participant}', [EventParticipantController::class, 'deleteParticipant'])->name('deleteParticipant');
+            Route::put('/approve/{participantId}', [EventParticipantController::class, 'approveParticipant'])->name('approveParticipant');
+            Route::put('/reject/{participantId}', [EventParticipantController::class, 'rejectParticipant'])->name('rejectParticipant');
+            Route::post('/updatePaymentStatus/{participant}', [EventParticipantController::class, 'updatePaymentStatus'])->name('updatePaymentStatus');
+            Route::put('/join', [EventParticipantController::class, 'joinEvent'])->name('joinEvent');
+        });
 
-// Routes for Review
-    Route::post('/events/{event}/reviews', [ReviewController::class, 'store']);
-    Route::put('/reviews/{review}', [ReviewController::class, 'update']);
-    Route::delete('/reviews/{review}', [ReviewController::class, 'destroy']);
+        Route::post('/registerWithCode', [EventParticipantController::class, 'registerWithCode'])->name('registerWithCode');
+        Route::get('/{id}/history', [EventHistoryController::class, 'history']);
+    });
 
-// Routes for Reward
-    Route::get('/rewards', [RewardController::class, 'index']);
 
-// Routes for Notification
-    Route::get('/notifications', [NotificationController::class, 'index']);
-    Route::post('/notifications', [NotificationController::class, 'store']);
-    Route::delete('/notifications/{notification}', [NotificationController::class, 'destroy']);
-
-// Routes for Chat
-    Route::get('/chats', [ChatController::class, 'index']);
-    Route::post('/chats', [ChatController::class, 'store']);
-    Route::get('/chats/{chat}', [ChatController::class, 'show']);
-    Route::delete('/chats/{chat}', [ChatController::class, 'destroy']);
+    // Search route
+    Route::middleware('auth:sanctum')->get('/search', [SearchController::class, 'search'])->name('search');
 });

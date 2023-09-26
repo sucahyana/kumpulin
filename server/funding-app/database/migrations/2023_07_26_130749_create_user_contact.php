@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('user_contact', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
+            $table->string('value');
+            $table->char('id_user');
+
+            $table->foreign('id_user')->references('id')->on('users');
+
             $table->timestamps();
         });
     }

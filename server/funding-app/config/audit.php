@@ -22,7 +22,13 @@ return [
     |
     | Define the morph prefix and authentication guards for the User resolver.
     |
+
     */
+    // set the use_morph_map value to true
+    'use_morph_map' => true,
+
+    // set the user_morph_key value to true
+    'user_morph_key' => true,
 
     'user'      => [
         'morph_prefix' => 'user',

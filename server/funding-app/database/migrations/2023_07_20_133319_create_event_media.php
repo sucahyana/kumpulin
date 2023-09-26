@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('events_media', function (Blueprint $table) {
-            $table->uuid('event_media_id')->primary();
-            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
-            $table->enum('media_type',['video','image']);
+        Schema::create('event_media', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->char('id_event');
+
+            $table->foreign('id_event')->references('id')->on('events');
+            $table->enum('media_category',['video','image']);
             $table->string('media_url');
             $table->timestamps();
             $table->softDeletes();

@@ -7,12 +7,18 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use OwenIt\Auditing\Contracts\Auditable;
+
 
 /**
- * Class EventsMedia
+ * Class EventMedia
  *
  * @property string $id
  * @property string $event_id
@@ -22,27 +28,26 @@ use Laravel\Passport\HasApiTokens;
  * @property Carbon|null $updated_at
  * @property string|null $deleted_at
  *
- * @property Event $event
+ * @property Events $event
  *
  * @package App\Models
  */
-class EventsMedia extends Model
+class EventMedia extends Model implements AuthenticatableContract,Auditable
 {
-    use \OwenIt\Auditing\Auditable;
-    use HasApiTokens;
+    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,uuid,Authenticatable;
     use SoftDeletes;
 
-    protected $table = 'events_media';
+    protected $table = 'event_media';
     public $incrementing = false;
 
     protected $fillable = [
-        'event_id',
-        'media_type',
+        'id_event',
+        'media_category',
         'media_url'
     ];
 
-    public function event()
+    public function events()
     {
-        return $this->belongsTo(Event::class);
+        return $this->belongsTo(Events::class ,'id_event');
     }
 }

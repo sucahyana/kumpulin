@@ -9,7 +9,8 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * Class Notification
@@ -30,8 +31,7 @@ use Laravel\Passport\HasApiTokens;
  */
 class Notification extends Model
 {
-    use \OwenIt\Auditing\Auditable;
-    use HasApiTokens;
+    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable;
     use SoftDeletes;
 
     protected $table = 'notifications';
@@ -43,8 +43,8 @@ class Notification extends Model
 
     protected $fillable = [
         'content',
-        'user_id',
-        'event_id',
+        'id_user',
+        'id_event',
         'is_read'
     ];
 
