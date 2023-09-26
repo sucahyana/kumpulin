@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
+@import 'primereact/resources/themes/saga-blue/theme.css';
+@import 'primereact/resources/primereact.min.css';
+@import 'primeicons/primeicons.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    @apply leading-[normal] m-0;
+    font-family: 'Poppins', sans-serif;
+}
+.ReactCrop__image {
+    display: block !important;
+    max-width: 100% !important;
+}
+
+.font-poppins{
+    font-family: 'Poppins', sans-serif;
+}
