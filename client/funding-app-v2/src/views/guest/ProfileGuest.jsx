@@ -4,7 +4,7 @@ import UserAboutComponent from "../../components/dashboard/UserAboutComponent.js
 import EventCardProfile from "../../components/dashboard/EventCardProfile.jsx";
 import Starter from "../../components/userComponent/Starter.jsx";
 import ProfileCard from "../../components/ProfileCard.jsx";
-import { UserProfile } from "../../services/apiService.jsx"; // Pastikan ini mengambil data dengan benar dari API
+import { UserProfile } from "../../services/apiService.jsx";
 
 const ProfileGuest = () => {
     const [userData, setUserData] = useState(null);

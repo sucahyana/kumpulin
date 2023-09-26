@@ -9,7 +9,7 @@ export default function RedirectIfAuthenticated({ children }) {
 
     useEffect(() => {
         if (isAuthenticated || tokenLocalStorage) {
-            navigate('/profile');
+            navigate('/');
         }
     }, [navigate, isAuthenticated, tokenLocalStorage]);
 

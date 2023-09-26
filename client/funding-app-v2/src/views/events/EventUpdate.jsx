@@ -10,7 +10,7 @@ import Starter from "../../components/userComponent/Starter.jsx";
 
 const EventUpdate = () => {
     const {eventCode} = useParams();
-    const currentUser = useSelector((state) => state.user.data.user);
+    const currentUser = useSelector(state => state.user?.data?.user);
     const [eventData, setEventData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);

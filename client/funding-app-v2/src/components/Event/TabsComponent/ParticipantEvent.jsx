@@ -21,7 +21,7 @@ const ParticipantEvent = ({ eventData }) => {
     const [isManageModalOpen, setManageModalOpen] = useState(false);
     const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
     const [selectedParticipant, setSelectedParticipant] = useState(null);
-    const currentUser = useSelector((state) => state.user.data.user);
+    const currentUser = useSelector(state => state.user?.data?.user);
     const isCurrentUserCreator = currentUser && currentUser.id === eventData.id_user;
 
     const getSpeedDialItems = (participant) => {

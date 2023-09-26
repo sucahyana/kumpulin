@@ -6,6 +6,7 @@ import { Button } from 'primereact/button';
 import { FaSearch, FaSpinner } from 'react-icons/fa';
 import { search } from '../../services/apiService.jsx';
 import { Link, useNavigate } from 'react-router-dom';
+import { Tooltip } from "react-tooltip";
 
 const NavbarComponent = ({ isSticky, showNavbar }) => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -33,14 +34,16 @@ const NavbarComponent = ({ isSticky, showNavbar }) => {
                 label: user.name,
                 value: user.id,
                 type: 'user',
-                image: user.profile_image
+                image: user.profile_image,
+                bio: user.bio || "Halo Kumpulin Lover"
             }));
             const events = response.events.map(event => ({
                 label: event.title,
                 value: event.id,
                 type: 'event',
                 image: event.event_media[0]?.media_url,
-                code: event.code_event
+                code: event.code_event,
+                bio: event.category
             }));
             setSearchOptions([
                 { label: "Users", options: users },
@@ -69,7 +72,7 @@ const NavbarComponent = ({ isSticky, showNavbar }) => {
 
     const formatGroupLabel = (data) => (
         <div className="flex justify-center items-center">
-            <span className="text-blue-500 font-semibold text-base">{data.label}</span>
+            <span className="text-blue-500 font-semibold text-base sm:text-lg lg:text-xl">{data.label}</span>
         </div>
     );
 
@@ -130,38 +133,71 @@ const NavbarComponent = ({ isSticky, showNavbar }) => {
     };
 
     return (
-        <nav className={`border-b bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20 z-10 ${isSticky ? 'sticky top-0 z-10 shadow-md' : ''} ${showNavbar ? 'transform translate-y-0 transition-transform duration-300 ease-in-out' : 'transform -translate-y-full transition-transform duration-300 ease-in-out'}`}>
+        <nav
+            className={`border-b bg-gray-100 w-full flex relative justify-between items-center mx-auto px-4 sm:px-8 h-16 lg:h-20 z-10 ${isSticky ? 'sticky top-0 z-10 shadow-md' : ''} ${showNavbar ? 'transform translate-y-0 transition-transform duration-300 ease-in-out' : 'transform -translate-y-full transition-transform duration-300 ease-in-out'}`}>
             <div className={`sm:block flex-shrink flex-grow-0 justify-start px-2 ${showNavbar ? 'block' : 'hidden'}`}>
                 <form className="flex w-full bg-none">
-                    <div className="flex mx-4">
+                    <div className="flex mx-2 sm:mx-4">
                         <Select
                             value={searchOptions.find(option => option.label === searchQuery)}
                             onInputChange={setSearchQuery}
                             options={searchOptions}
                             isLoading={isLoading}
                             maxMenuHeight={800}
-                            placeholder="Search..."
-                            className={`min-w-[800px] rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
+
+                            placeholder="Search for users or events..."
+                            className={`sm:min-w-[300px] lg:min-w-[600px] rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent`}
                             formatGroupLabel={formatGroupLabel}
                             styles={customStyles}
                             components={{
                                 Option: ({ data, ...props }) => (
-                                    <Link to={data.type === 'user' ? `/profile/${data.value}` : `/event/${data.code}`}>
+                                    <Link
+                                        to={data.type === 'user' ? `/profile/${data.value}` : `/event/${data.code}`}
+                                        data-tooltip-id="Container"
+                                        data-tooltip-content={
+                                            data.type === 'user' ? 'Pengguna Kumpulin' : 'Acara yang dibuat pengguna Kumpulin'
+                                        }
+                                    >
                                         <div
                                             {...props}
-                                            className="flex flex-row flex-grow gap-8 p-2 items-center bg-none border-dashed  border-y-1 border-gray-800 hover:bg-gray-400 mx-2  shadow-sm cursor-pointer transition-all duration-300 hover:translate-x-1 "
+                                            className={`flex flex-row flex-grow gap-4 p-2 items-center bg-white border-dashed border-y-1 border-gray-200 hover:bg-gray-100 mx-2 rounded shadow-sm cursor-pointer transition-all duration-300 hover:translate-x-2 ${
+                                                data.type === 'event' ? 'event-option' : ''
+                                            }`}
                                         >
                                             {data.image && (
-                                                <img
-                                                    src={data.image}
-                                                    alt={data.label}
-                                                    className="w-16 h-16 rounded-full mr-2 transition-all duration-300 hover:scale-105  aspect-square shadow-[0px_8px_16px_-8px_rgba(25,20,20,0.80)]"
-                                                />
+                                                <section className="flex-shrink-0 border p-3 rounded transition-all duration-300 hover:scale-105 aspect-square shadow-md bg-gray-100">
+                                                    <img
+                                                        src={data.image}
+                                                        alt={data.label}
+                                                        className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full mr-2 "
+                                                    />
+                                                </section>
                                             )}
-                                            <span className="text-base font-medium text-gray-800">{data.label}</span>
+                                            <div className="flex flex-col flex-grow">
+                                                <section className="w-full shadow-lg p-2 bg-gray-100 rounded-t">
+                                                    <h4 className="text-lg font-medium text-gray-800 sm:text-sm lg:text-base">{data.label}</h4>
+                                                </section>
+                                                <section className="p-2 bg-blue-50 rounded-b shadow-lg">
+                                                    <p className="sm:text-xs lg:text-sm text-gray-500">{data.bio}</p>
+                                                </section>
+                                            </div>
                                         </div>
+                                        <Tooltip
+                                            id="Container"
+                                            place="top-end"
+                                            noArrow={true}
+                                            delayShow={400}
+                                            className="shadow-lg"
+                                            style={{
+                                                color: "#FFFFFF",
+                                                backgroundColor: "#475569",
+                                                borderRadius: "8px",
+                                                maxWidth: "300px",
+                                                fontSize: "14px",
+                                            }}
+                                        />
                                     </Link>
-                                )
+                                ),
                             }}
                             onChange={handleOptionSelect}
                         />
@@ -175,7 +211,7 @@ const NavbarComponent = ({ isSticky, showNavbar }) => {
                 </form>
             </div>
             <div className="flex-initial">
-                <div className="flex justify-end items-center relative gap-8">
+                <div className="flex justify-end items-center relative gap-4 sm:gap-8 lg:gap-12">
                     <NotificationComponent />
                     <DropdownProfileComponent />
                 </div>

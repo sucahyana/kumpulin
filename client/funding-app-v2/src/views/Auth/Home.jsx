@@ -9,8 +9,8 @@ import { getAllEventsWithPagination } from '../../services/apiService.jsx';
 import Loader from "../../components/Loader.jsx";
 
 const Home = () => {
-    const userData = useSelector((state) => state.user.data?.user);
-    const userEvents = useSelector((state) => state.user.data?.UserEvents) || [];
+    const userEvents = useSelector(state => state.user?.data?.UserEvents);
+    const userData = useSelector(state => state.user?.data?.user);
 
     const [first, setFirst] = useState(0);
     const [rows, setRows] = useState(10);
@@ -46,7 +46,7 @@ const Home = () => {
 
     function renderContent() {
         return (
-            <div className="flex flex-col p-8 space-y-8">
+            <div className="flex flex-col p-8 space-y-16">
                 {carousel}
                 <section>
                     <h2 className="text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">

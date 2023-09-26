@@ -2,7 +2,7 @@ import ActionType from '../actionType';
 
 const initialState = {
     isAuthenticated: !!localStorage.getItem('token'),
-    token: localStorage.getItem('token'),
+    token: localStorage.getItem('token') || null,
     data: {
         user: null
     },
@@ -16,6 +16,7 @@ const reducerUser = (state = initialState, action) => {
                 isAuthenticated: true,
                 data: action.payload.data,
             };
+
         case ActionType.SET_AUTH:
             const { token } = action.payload;
 
@@ -25,13 +26,17 @@ const reducerUser = (state = initialState, action) => {
 
             return {
                 ...state,
-                isAuthenticated: true,
+                isAuthenticated: !!token,
                 token: token,
-                data: null,
             };
+
         case ActionType.RESET_USER:
             localStorage.removeItem('token');
-            return initialState;
+            return {
+                ...initialState,
+                token: null
+            };
+
         default:
             return state;
     }

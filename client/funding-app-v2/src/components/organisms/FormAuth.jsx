@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { registerUser, apiService } from '../../services/apiService.jsx';
-import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
-import { setAuth } from "../../store/actions/user.js";
+import React, {useEffect, useState} from 'react';
+import {registerUser, apiService} from '../../services/apiService.jsx';
+import {useDispatch} from "react-redux";
+import {useNavigate} from 'react-router-dom';
+import {fetchUserData, setAuth} from "../../store/actions/user.js";
 import ButtonSubmit from '../atoms/ButtonSubmit.jsx';
 import logo from '../../assets/images/logo.png';
-import { Link } from 'react-router-dom';
-import { toast } from "react-hot-toast";
-import { notifyError, notifySuccess } from "../toast.jsx";
+import {Link} from 'react-router-dom';
+import {toast} from "react-hot-toast";
+import {notifyError, notifySuccess, notifyLoading, stopLoading} from "../toast.jsx";
 
-const FormAuth = ({ fields, buttonName, headers, links }) => {
+const FormAuth = ({fields, buttonName, headers, links}) => {
     const [formData, setFormData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState({});
@@ -17,13 +17,13 @@ const FormAuth = ({ fields, buttonName, headers, links }) => {
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({ ...prevData, [name]: value }));
+        const {name, value} = e.target;
+        setFormData((prevData) => ({...prevData, [name]: value}));
     };
 
     const handleSuccess = (message) => {
         notifySuccess(message);
-        navigate('/profile');
+        navigate('/');
     };
 
     const handleError = (error) => {
@@ -60,8 +60,12 @@ const FormAuth = ({ fields, buttonName, headers, links }) => {
         setIsLoading(true);
         setError({});
 
+        // Menambahkan notifikasi loading
+        notifyLoading('Memproses...');
+
         if (!validateForm()) {
             setIsLoading(false);
+            stopLoading();
             return;
         }
 
@@ -72,9 +76,14 @@ const FormAuth = ({ fields, buttonName, headers, links }) => {
                     handleSuccess('Registrasi berhasil!');
                 }
             } else {
-                const response = await apiService.post('/auth/login', { contact: formData.contact, password: formData.password });
+                const response = await apiService.post('/auth/login', {
+                    contact: formData.contact,
+                    password: formData.password
+                });
                 const token = response.data.data.token;
-                dispatch(setAuth({ token }));
+                dispatch(setAuth({token}));
+                dispatch(fetchUserData());
+
                 handleSuccess('Login berhasil!');
             }
         } catch (error) {
@@ -82,7 +91,9 @@ const FormAuth = ({ fields, buttonName, headers, links }) => {
         }
 
         setIsLoading(false);
+        stopLoading();
     };
+
 
     const validateForm = () => {
         const newError = {};
@@ -126,10 +137,10 @@ const FormAuth = ({ fields, buttonName, headers, links }) => {
                             {error[field.name] && <p className="mt-1 text-sm text-pink-500">{error[field.name]}</p>}
                         </div>
                     ))}
-                    <ButtonSubmit text={buttonName} isLoading={isLoading} />
+                    <ButtonSubmit text={buttonName} isLoading={isLoading}/>
                     <div className="flex items-center justify-between text-base text-gray-500 gap-7 mt-4">
                         <div className="flex items-center">
-                            <input type="checkbox" id="remember" className="mr-2" />
+                            <input type="checkbox" id="remember" className="mr-2"/>
                             <label htmlFor="remember">Ingat Saya</label>
                         </div>
                         <a href="#" className="text-right text-info-500">&emsp;&emsp;&emsp;

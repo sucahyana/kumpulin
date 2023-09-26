@@ -43,8 +43,15 @@ const ProfileCard = ({ user }) => {
                     <Image
                         src={coverImage}
                         alt={`Cover Profile ${user.name}`}
-                        className="h-[280px] object-cover rounded-t-lg transition-transform duration-300 hover:scale-105"
+                        className="h-[280px] object-cover rounded-t-lg transition-transform duration-300 hover:scale-105 hid"
                         preview
+                        crossOrigin={"anonymous"}
+                        pt={{
+                            zoomInButton: {className: 'hidden'},
+                            zoomOutButton: {className: 'hidden'},
+                            rotateLeftButton: {className: 'hidden'},
+                            rotateRightButton: {className: 'hidden'},
+                        }}
                     />
                 </div>
                 <div className="border-b px-8">

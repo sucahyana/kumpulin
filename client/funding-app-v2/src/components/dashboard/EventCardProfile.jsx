@@ -19,9 +19,8 @@ const EventCardProfile = ({ event, userData }) => {
         amount_person,
     } = event;
     const navigate = useNavigate();
-
     const truncatedDescription = description.length > 100 ? `${description.substring(0, 100)}...` : description;
-    const currentUser = useSelector((state) => state.user.data.user);
+    const currentUser = useSelector(state => state.user?.data?.user);
     const isCurrentUserParticipant = currentUser && userData.id === currentUser.id;
 
     const handleCardClick = () => {

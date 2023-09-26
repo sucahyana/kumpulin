@@ -12,7 +12,8 @@ import {Button} from "primereact/button";
 
 const ContactForm = ({}) => {
     const dispatch = useDispatch();
-    const userData = useSelector((state) => state.user.data.user); // Assuming the user data is stored in the Redux store
+    const userEvents = useSelector(state => state.user?.data?.UserEvents);
+    const userData = useSelector(state => state.user?.data?.user);
 
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({

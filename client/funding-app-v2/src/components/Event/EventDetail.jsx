@@ -16,7 +16,8 @@ import {InputText} from 'primereact/inputtext';
 
 const EventDetail = ({Content, eventData, children}) => {
     const navigate = useNavigate();
-    const currentUser = useSelector((state) => state.user.data.user);
+
+    const currentUser = useSelector(state => state.user?.data?.user);
     const [showModal, setShowModal] = useState(false);
     const [eventCode, setEventCode] = useState('');
     const [loading, setLoading] = useState(true);
