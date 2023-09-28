@@ -160,12 +160,12 @@ const NavbarComponent = ({ isSticky, showNavbar }) => {
                                     >
                                         <div
                                             {...props}
-                                            className={`flex flex-row flex-grow gap-4 p-2 items-center bg-white border-dashed border-y-1 border-gray-200 hover:bg-gray-100 mx-2 rounded shadow-sm cursor-pointer transition-all duration-300 hover:translate-x-2 ${
+                                            className={`flex flex-row flex-grow gap-2 p-4 items-center border-dashed border-y-1 border-gray-200 hover:bg-gray-100 mx-2 rounded shadow-sm cursor-pointer transition-all duration-300 hover:translate-x-2 ${
                                                 data.type === 'event' ? 'event-option' : ''
                                             }`}
                                         >
                                             {data.image && (
-                                                <section className="flex-shrink-0 border p-3 rounded transition-all duration-300 hover:scale-105 aspect-square shadow-md bg-gray-100">
+                                                <section className="">
                                                     <img
                                                         src={data.image}
                                                         alt={data.label}
@@ -173,11 +173,11 @@ const NavbarComponent = ({ isSticky, showNavbar }) => {
                                                     />
                                                 </section>
                                             )}
-                                            <div className="flex flex-col flex-grow">
-                                                <section className="w-full shadow-lg p-2 bg-gray-100 rounded-t">
+                                            <div className="flex flex-col gap-0">
+                                                <section className="w-full rounded-t">
                                                     <h4 className="text-lg font-medium text-gray-800 sm:text-sm lg:text-base">{data.label}</h4>
                                                 </section>
-                                                <section className="p-2 bg-blue-50 rounded-b shadow-lg">
+                                                <section className="rounded-b">
                                                     <p className="sm:text-xs lg:text-sm text-gray-500">{data.bio}</p>
                                                 </section>
                                             </div>
@@ -202,12 +202,6 @@ const NavbarComponent = ({ isSticky, showNavbar }) => {
                             onChange={handleOptionSelect}
                         />
                     </div>
-                    <Button
-                        type="button"
-                        icon={isLoading ? <FaSpinner size={18} className="animate-spin" /> : <FaSearch size={18} />}
-                        onClick={handleNavigateSearch}
-                        className="text-white bg-blue-500 hover:bg-blue-600 transition-colors duration-200 ml-2 rounded p-2"
-                    />
                 </form>
             </div>
             <div className="flex-initial">

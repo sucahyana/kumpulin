@@ -32,5 +32,11 @@ export const fetchUserData = (token) => async dispatch => {
     } catch (error) {
         console.error("Error fetching user data:", error);
         dispatch(fetchUserDataError(error.message || "Failed to fetch user data."));
+
+        // Hanya memanggil resetUser jika kesalahan berkaitan dengan autentikasi
+        if (error.response && error.response.status === 401) { // Anggap saja kode status 401 menandakan token tidak valid
+            dispatch(resetUser());
+        }
     }
 };
+

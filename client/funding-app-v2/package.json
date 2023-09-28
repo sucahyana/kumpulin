@@ -16,6 +16,7 @@
     "blueimp-load-image": "^5.16.0",
     "browser-image-compression": "^2.0.2",
     "connected-react-router": "^6.9.3",
+    "crypto-browserify": "^3.12.0",
     "crypto-js": "^4.1.1",
     "date-fns": "^2.30.0",
     "formik": "^2.4.5",
@@ -25,6 +26,7 @@
     "primereact": "^9.6.2",
     "prop-types": "^15.8.1",
     "pusher-js": "^8.3.0",
+    "randombytes": "^2.1.0",
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-chartjs-2": "^5.2.0",
@@ -46,6 +48,7 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
+    "safe-buffer": "^5.2.1",
     "swr": "^2.2.2",
     "tesseract.js": "^4.1.2",
     "tw-elements": "^1.0.0"

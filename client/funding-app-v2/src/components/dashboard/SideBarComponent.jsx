@@ -10,7 +10,7 @@ export const SideBarComponent = () => {
         <aside
             className="sticky top-0 flex flex-col w-64 h-screen p-8 overflow-y-auto bg-gray-100 border-r drop-shadow-sm rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
             <Link to={"/"} className="mx-auto">
-                <img className="w-auto h-24 " src={logo} alt="" /> <span className="text-xl font-bold text-center -mx-7 inline-block text-blue-200 italic hover:text-blue-500">Kumpulin <span className="text-green-200 hover:text-green-500">App</span></span>
+                <img className="w-auto h-36 bg-none" src={logo} alt="Logo Kumpulin" />
             </Link>
             <div className="flex flex-col justify-between flex-1 mt-24">
                 <nav className="-mx-3 space-y-6 ">
