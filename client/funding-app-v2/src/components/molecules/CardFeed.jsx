@@ -35,14 +35,14 @@ const CardFeed = ({ event, userData }) => {
     };
 
     return (
-        <div className="max-w-[400px] bg-white shadow-md rounded-lg p-6 space-y-4 transform transition-transform duration-500 ease-in-out hover:shadow-xl hover:-translate-y-1">
-            <div className="flex justify-between items-center space-x-4">
+        <div className="max-w-full sm:max-w-[400px] bg-white shadow-md rounded-lg p-6 space-y-4 transform transition-transform duration-500 ease-in-out hover:shadow-xl hover:-translate-y-1">
+            <div className="flex flex-col sm:flex-row justify-between items-center space-x-4">
                 <img
                     src={event_media[0].media_url}
                     alt={title}
                     className="w-16 h-16 rounded-full shadow-md hover:shadow-lg transition-all duration-300"
                 />
-                <div className="flex flex-col text-right space-y-1">
+                <div className="flex flex-col text-center sm:text-right space-y-1">
                     <h5 className="text-lg font-semibold text-gray-800 hover:text-gray-900 transition-colors duration-300">
                         {title}
                     </h5>
@@ -68,8 +68,8 @@ const CardFeed = ({ event, userData }) => {
                 />
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mt-4">
-                <div className="flex flex-col space-y-2 bg-gradient-to-r from-blue-200 to-blue-100 justify-center shadow-lg hover:shadow-xl transition-all duration-300 p-4 rounded-lg ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                <div className="flex flex-col sm:space-y-2 bg-gradient-to-r from-blue-200 to-blue-100 justify-center shadow-lg hover:shadow-xl transition-all duration-300 p-4 rounded-lg ">
                     {userParticipant ? (
                         <>
                             <h5 className="text-sm font-medium text-green-800">
@@ -95,14 +95,14 @@ const CardFeed = ({ event, userData }) => {
                         <h5 className="text-sm font-medium text-blue-800">Anda belum membayar</h5>
                     )}
                 </div>
-                <div className="flex items-center justify-center bg-gradient-to-r from-blue-200 to-blue-100 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-4 ">
+                <div className="flex items-center justify-center sm:justify-start bg-gradient-to-r from-blue-200 to-blue-100 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-4 ">
                     <span className="text-sm font-medium text-blue-800">
                         <span className="text-gray-900">
                             {paidParticipantsCount}
                         </span> Orang Sudah Lunas
                     </span>
                 </div>
-                <div className="flex items-center justify-center col-span-2 bg-gradient-to-r from-yellow-200 to-yellow-100 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-4">
+                <div className="flex items-center justify-center sm:col-span-2 bg-gradient-to-r from-yellow-200 to-yellow-100 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-4">
                     <span className="text-sm font-semibold text-yellow-800">
                         Batas Acara harus lunas {format(new Date(end_date), 'dd MMMM yyyy')}
                     </span>

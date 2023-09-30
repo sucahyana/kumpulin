@@ -121,29 +121,29 @@ class AuthController extends Controller
 
 
 
-    public function resetPassword(Request $request)
+    public function changePassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email',
             'old_password' => 'required|string|min:8',
-            'new_password' => 'required|string|min:8|confirmed'
+            'new_password' => 'required|string|min:8|confirmed|different:old_password'
         ]);
 
         try {
             $user = $request->user();
-
-            if ($user->email != $request->email || !Hash::check($request->old_password, $user->password)) {
-                return $this->successResponse(401, false, 'Invalid credentials', []);
+            if (!Hash::check($request->old_password, $user->password)) {
+                return $this->errorResponse(401, 'Invalid credentials', []);
             }
-
             $user->password = $request->new_password;
             $user->save();
 
             return $this->successResponse(200, true, 'Password berhasil diubah', []);
         } catch (\Exception $e) {
-            return $this->successResponse(500, false, 'Terjadi kesalahan saat mengubah password', []);
+            return $this->errorResponse(500, 'Terjadi kesalahan saat mengubah password', []);
         }
     }
+
+
+
 
     public function logout(Request $request)
     {

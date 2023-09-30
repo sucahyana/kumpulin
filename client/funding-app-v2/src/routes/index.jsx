@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from '../views/Auth/Home.jsx';
+import Home from '../views/Home.jsx';
 import Login from '../views/Auth/Login';
 import Register from '../views/Auth/Register';
 import Profile from '../views/users/Profile';

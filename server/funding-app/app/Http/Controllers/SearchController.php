@@ -25,7 +25,7 @@ class SearchController extends Controller
 
         $events = Events::where('title', 'LIKE', '%' . $searchTerm . '%')
             ->orWhere('category', 'LIKE', '%' . $searchTerm . '%')
-            ->with('event_media')
+            ->with('event_media','event_participant.user','user:id,name,profile_image')
             ->get();
 
         return response()->json([

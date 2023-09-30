@@ -26,7 +26,7 @@ const FeaturedCard = ({ data }) => {
 
     return (
         <div
-            className="relative max-w-xs p-4 h-full bg-white md:p-5 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1"
+            className="relative max-w-xs p-4 bg-white md:p-5 shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1"
         >
             <div className="relative rounded-lg overflow-hidden h-52 mb-4">
                 <img
@@ -61,7 +61,7 @@ const FeaturedCard = ({ data }) => {
                 )}
             </p>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="flex items-center space-x-2">
                     <FaHome className="text-green-200" size={18} />
                     <span className="text-green-500 text-xs md:text-sm">{event.amount_person} Rp</span>

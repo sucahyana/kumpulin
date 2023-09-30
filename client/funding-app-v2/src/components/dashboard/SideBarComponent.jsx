@@ -40,6 +40,9 @@ export const SideBarComponent = () => {
                     </div>
                 </nav>
             </div>
+            <footer className="mt-auto text-sm text-center text-gray-600 dark:text-gray-300">
+                <p>&copy; {new Date().getFullYear()} Kumpulin. All rights reserved.</p>
+            </footer>
         </aside>
     );
 };

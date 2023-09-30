@@ -2,6 +2,7 @@ import axios from 'axios';
 import store from "../store/index.jsx";
 
 
+
 export const apiService = axios.create({
     baseURL: 'http://127.0.0.1:8000/api/v1',
     withCredentials: true,
@@ -33,6 +34,22 @@ export const registerUser = async (name, contact,gender, password, password_conf
         throw error;
     }
 };
+
+export const changePassword = async ({ contact, old_password, new_password, new_password_confirmation }) => {
+    try {
+        const response = await apiService.post('/auth/changePassword', {
+            contact,
+            old_password,
+            new_password,
+            new_password_confirmation
+        });
+        return response.data;
+    } catch (error) {
+
+        throw error;
+    }
+}
+
 
 export const updateUserBasicProfile = async (data) => {
     try {

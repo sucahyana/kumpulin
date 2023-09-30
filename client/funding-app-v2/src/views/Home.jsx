@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Starter from '../../components/userComponent/Starter.jsx';
+import Starter from '../components/userComponent/Starter.jsx';
 import { Paginator } from 'primereact/paginator';
-import CardFeed from '../../components/molecules/CardFeed.jsx';
-import FeaturedCard from '../../components/molecules/FeaturedCard.jsx';
-import AdsGalleria from '../../components/molecules/AdsGalleria.jsx';
-import { getAllEventsWithPagination } from '../../services/apiService.jsx';
-import Loader from "../../components/Loader.jsx";
+import CardFeed from '../components/molecules/CardFeed.jsx';
+import FeaturedCard from '../components/molecules/FeaturedCard.jsx';
+import AdsGalleria from '../components/molecules/AdsGalleria.jsx';
+import { getAllEventsWithPagination } from '../services/apiService.jsx';
+import Loader from "../components/Loader.jsx";
 
 const Home = () => {
     const userEvents = useSelector(state => state.user?.data?.UserEvents);
@@ -42,24 +42,22 @@ const Home = () => {
 
     const carousel = <AdsGalleria />;
 
-
-
     function renderContent() {
         return (
-            <div className="flex flex-col p-8 space-y-16">
+            <div className="flex flex-col p-4 sm:p-8 space-y-6 sm:space-y-16">
                 {carousel}
                 <section>
-                    <h2 className="text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">
                         Ini Funding Kamu Loh!
                     </h2>
-                    <div className="mt-4 flex flex-wrap gap-6 justify-center">
+                    <div className="mt-4 flex flex-wrap gap-4 sm:gap-6 justify-center">
                         {userEvents?.length > 0 ? (
                             userEvents?.map((event) => (
                                 <CardFeed key={event.id} event={event} userData={userData} />
                             ))
                         ) : (
-                            <div className=" flex min-h-full p-48 max-w-2/3 bg-white justify-center align-middle items-center rounded-lg shadow-lg">
-                                <h1 className="animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-5 text-2xl text-blue-500 font-bold ">
+                            <div className="flex min-h-full p-6 sm:p-16 max-w-2/3 bg-white justify-center items-center rounded-lg shadow-lg">
+                                <h1 className="animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-5 text-base sm:text-2xl text-blue-500 font-bold">
                                     Kamu Belum ada Funding :(
                                 </h1>
                             </div>
@@ -68,10 +66,10 @@ const Home = () => {
                 </section>
 
                 <section>
-                    <h2 className="text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">
                         Rekomendasi Acara
                     </h2>
-                    <div className="mt-4 flex flex-wrap gap-6">
+                    <div className="mt-4 flex flex-wrap gap-4 sm:gap-6">
                         {eventData?.map((event) => (
                             <FeaturedCard key={event.id} data={event} />
                         ))}
@@ -89,8 +87,9 @@ const Home = () => {
             </div>
         );
     }
+
     return (
-        <Starter Content={loading ? <Loader/> : renderContent()} />
+        <Starter Content={loading ? <Loader /> : renderContent()} />
     );
 };
 

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import SideBarComponent from '../../components/dashboard/SideBarComponent';
 import ProfileCard from '../../components/ProfileCard';
 import NavbarComponent from '../../components/dashboard/NavbarComponent.jsx';
@@ -31,14 +31,14 @@ const Starter = ({ Content }) => {
     }, [lastScrollPosition]);
 
     return (
-        <div className="flex bg-gray-100 min-h-screen">
-            <SideBarComponent />
-            <div className="flex-grow flex flex-col">
+        <div className="flex flex-col lg:flex-row bg-gray-100 min-h-screen">
+<SideBarComponent/>
+            <div className="flex-grow flex flex-col w-full lg:w-3/4">
                 <NavbarComponent
                     isSticky={isSticky}
                     showNavbar={showNavbar}
                 />
-                <main className="m-8 mt-0 p-8 flex-grow">
+                <main className="m-4 mt-0 p-4 lg:m-8 lg:mt-0 lg:p-8 flex-grow">
                     {Content}
                 </main>
                 <RightNav />

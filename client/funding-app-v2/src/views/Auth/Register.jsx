@@ -1,5 +1,5 @@
 import React from 'react';
-import FormAuth from "../../components/organisms/FormAuth.jsx"; // Pastikan path ini sesuai dengan lokasi FormAuth
+import FormAuth from "../../components/organisms/FormAuth.jsx";
 
 const Register = () => {
     const fields = [
@@ -19,7 +19,9 @@ const Register = () => {
 
     return (
         <div className="bg-gray-100 min-h-screen flex justify-center items-center">
-            <FormAuth fields={fields} buttonName={buttonName} headers={headers} links={links} />
+            <div className="w-full  sm:w-[400px] lg:w-[500px]">
+                <FormAuth fields={fields} buttonName={buttonName} headers={headers} links={links} />
+            </div>
         </div>
     );
 };

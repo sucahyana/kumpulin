@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {registerUser, apiService} from '../../services/apiService.jsx';
-import {useDispatch} from "react-redux";
-import {useNavigate} from 'react-router-dom';
-import {fetchUserData, setAuth} from "../../store/actions/user.js";
+import React, { useEffect, useState } from 'react';
+import { registerUser, apiService } from '../../services/apiService.jsx';
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { fetchUserData, setAuth } from "../../store/actions/user.js";
 import ButtonSubmit from '../atoms/ButtonSubmit.jsx';
 import logo from '../../assets/images/logo.png';
-import {Link} from 'react-router-dom';
-import {toast} from "react-hot-toast";
-import {notifyError, notifySuccess, notifyLoading, stopLoading} from "../toast.jsx";
+import { Link } from 'react-router-dom';
+import { toast } from "react-hot-toast";
+import { notifyError, notifySuccess, notifyLoading, stopLoading } from "../toast.jsx";
 
-const FormAuth = ({fields, buttonName, headers, links}) => {
+const FormAuth = ({ fields, buttonName, headers, links }) => {
     const [formData, setFormData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState({});
@@ -17,8 +17,8 @@ const FormAuth = ({fields, buttonName, headers, links}) => {
     const navigate = useNavigate();
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target;
-        setFormData((prevData) => ({...prevData, [name]: value}));
+        const { name, value } = e.target;
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
     const handleSuccess = (message) => {
@@ -81,7 +81,7 @@ const FormAuth = ({fields, buttonName, headers, links}) => {
                     password: formData.password
                 });
                 const token = response.data.data.token;
-                dispatch(setAuth({token}));
+                dispatch(setAuth({ token }));
                 dispatch(fetchUserData());
 
                 handleSuccess('Login berhasil!');
@@ -109,9 +109,9 @@ const FormAuth = ({fields, buttonName, headers, links}) => {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen">
-            <div className="w-[500px] bg-white rounded-lg drop-shadow-xl py-9">
-                <form className="w-[358px] mx-auto py-3 flex flex-col items-center gap-4" onSubmit={handleSubmit}>
+        <div className="flex justify-center items-center min-h-screen">
+            <div className="w-full p-4 sm:w-[400px] lg:w-[500px] xl:w-[600px] bg-white rounded-lg drop-shadow-xl py-9">
+                <form className="w-full px-4 sm:px-0 sm:w-[80%] mx-auto py-3 flex flex-col items-center gap-4" onSubmit={handleSubmit}>
                     <img
                         className="w-16 h-16 rounded-lg mb-0 bg-blue-500"
                         alt="Logo"
@@ -120,7 +120,7 @@ const FormAuth = ({fields, buttonName, headers, links}) => {
                     <h1 className="text-3xl font-bold text-gray-900 text-center -mb-3">
                         Kumpulin Apapun
                     </h1>
-                    <h1 className="text-lg font-medium text-gray-500">
+                    <h1 className="text-lg font-medium text-gray-500 text-center">
                         {headers.caption}
                     </h1>
                     {fields.map((field) => (
@@ -137,21 +137,17 @@ const FormAuth = ({fields, buttonName, headers, links}) => {
                             {error[field.name] && <p className="mt-1 text-sm text-pink-500">{error[field.name]}</p>}
                         </div>
                     ))}
-                    <ButtonSubmit text={buttonName} isLoading={isLoading}/>
-                    <div className="flex items-center justify-between text-base text-gray-500 gap-7 mt-4">
+                    <ButtonSubmit text={buttonName} isLoading={isLoading} />
+                    <div className="flex items-center justify-between text-base text-gray-500 gap-2 sm:gap-7 mt-4">
                         <div className="flex items-center">
-                            <input type="checkbox" id="remember" className="mr-2"/>
+                            <input type="checkbox" id="remember" className="mr-2" />
                             <label htmlFor="remember">Ingat Saya</label>
                         </div>
-                        <a href="#" className="text-right text-info-500">&emsp;&emsp;&emsp;
-                            Lupa Password?
-                        </a>
+                        <Link to="#" className="text-right text-info-500">&emsp;&emsp;&emsp;Lupa Password?</Link>
                     </div>
-                    <p className="mt-0 text-base text-center text-gray-500">
+                    <p className="mt-1 text-base text-center text-gray-500">
                         {headers.validateUserAccount}
-                        <Link to={links.ValidateUserRedirect} className="text-info-500">
-                            {headers.validateUserRedirect}
-                        </Link>
+                        <Link to={links.ValidateUserRedirect} className="text-info-500">{headers.validateUserRedirect}</Link>
                     </p>
                 </form>
             </div>

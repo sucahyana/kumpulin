@@ -7,24 +7,13 @@ import PhotoForm from "./PhotoForm.jsx";
 const SettingTabComponent = () => {
     const [activeTab, setActiveTab] = useState(localStorage.getItem('activeTab') || 'Basic');
 
-    const button = () => (
-        <div className="flex flex-row gap-6 justify-end text-gray-100 mt-8">
-            <button type="reset"
-                    className="w-[200px] rounded-xl bg-blue-300 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2">
-                Batal
-            </button>
-            <button type="submit"
-                    className="w-[200px] rounded-xl bg-blue-600 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2">
-                Simpan
-            </button>
-        </div>
-    );
+
 
     const tabContent = {
-        Basic: <BasicForm Button={button}/>,
-        Contact: <ContactForm Button={button}/>,
-        Keamanan: <KeamananForm Button={button}/>,
-        Photo: <PhotoForm Button={button}/>
+        Basic: <BasicForm />,
+        Contact: <ContactForm />,
+        Keamanan: <KeamananForm/>,
+        Photo: <PhotoForm />
     };
 
     const renderContent = () => tabContent[activeTab] || tabContent.Basic;

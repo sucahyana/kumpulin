@@ -82,11 +82,11 @@ const EventCardProfile = ({ event, userData }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col items-start justify-start gap-2 mt-6 border-dashed border-t-2 border-b-2 py-4 bg-white rounded-lg shadow-sm">
+                    <div className="flex flex-col items-start p-2 justify-start gap-2 mt-6 border-dashed border-t-2 border-b-2 py-4 bg-white rounded-lg shadow-sm">
                         <b className="relative text-xl font-semibold text-gray-800">
                             {title}
                         </b>
-                        <div className="relative text-base font-light text-gray-600">
+                        <div className="relative p-2 text-sm font-light text-gray-600">
                             {truncatedDescription}
                         </div>
                     </div>

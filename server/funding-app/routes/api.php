@@ -14,6 +14,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/register', [AuthController::class, 'register'])->name('register');
         Route::post('/login', [AuthController::class, 'login'])->name('login');
         Route::delete('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
+        Route::post('/changePassword', [AuthController::class, 'changePassword'])->name('changePassword')->middleware('auth:sanctum');
         Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
         Route::middleware('auth:sanctum')->post('/reset-password', [AuthController::class, 'resetPassword'])->name('resetPassword');
     });
@@ -25,6 +26,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/photo', [UserController::class, 'uploadProfilePhoto'])->name('uploadProfilePhoto');
         Route::post('/cover', [UserController::class, 'uploadProfileCover'])->name('uploadProfileCover');
         Route::get('/',[AuthController::class, 'tokenTest']);
+        Route::get('/notification',[AuthController::class, 'notification']);
         Route::get('/{user}',[UserController::class, 'show']);
         Route::get('/search', [UserController::class, 'search'])->name('user.search');
     });

@@ -16,7 +16,9 @@ const Login = () => {
 
     return (
         <div className="bg-gray-100 min-h-screen flex justify-center items-center">
-            <FormAuth fields={fields} buttonName={buttonName} headers={headers} links={links} />
+            <div className="w-full sm:w-[400px] md:w-[900px]">
+                <FormAuth fields={fields} buttonName={buttonName} headers={headers} links={links} />
+            </div>
         </div>
     );
 };

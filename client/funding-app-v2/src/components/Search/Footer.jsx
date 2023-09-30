@@ -10,7 +10,7 @@ const ParticipantImages = ({ participants }) => {
     return (
         <div className="flex flex-row items-center justify-start w-full md:w-auto mb-2 md:mb-0">
             {participants.slice(0, displayedParticipants).map((participant) => {
-                const profileImage = participant?.user?.profile_image || "https://picsum.photos/1000";
+                const profileImage = participant?.user?.profile_image || "https://picsum.photos/900";
                 return (
                     <img
                         key={participant.id || participant.user.id}
@@ -29,7 +29,7 @@ const ParticipantImages = ({ participants }) => {
     );
 };
 
-const EventCardFooter = ({ handleCardClick, participants }) => {
+const Footer = ({ handleCardClick, participants }) => {
     return (
         <div className="w-full md:w-[357px] h-auto md:h-[76px] flex flex-col md:flex-row py-[25px] box-border items-center justify-end text-left text-sm text-white font-body-body1">
             <ParticipantImages participants={participants} />
@@ -43,9 +43,9 @@ const EventCardFooter = ({ handleCardClick, participants }) => {
     );
 };
 
-EventCardFooter.propTypes = {
+Footer.propTypes = {
     handleCardClick: PropTypes.func.isRequired,
     participants: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
-export default EventCardFooter;
+export default Footer;
