@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { FaCouch, FaHome } from "react-icons/fa";
-import { Button } from "primereact/button";
-import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import React, {useState} from "react";
+import {FaCouch, FaHome} from "react-icons/fa";
+import {Button} from "primereact/button";
+import {format} from "date-fns";
+import {useNavigate} from "react-router-dom";
 
-const FeaturedCard = ({ data }) => {
+const FeaturedCard = ({data}) => {
     const event = data;
     const navigate = useNavigate();
     const maxDescriptionLength = 20;
@@ -25,27 +25,31 @@ const FeaturedCard = ({ data }) => {
         }`;
 
     return (
-        <div className="relative flex flex-col justify-around max-w-[200px] p-2 bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-            <FeaturedImage event={event} />
-            <h2 className="font-medium text-base md:text-lg text-gray-800 mb-2" title={event.title}>
-                {event.title}
-            </h2>
-            <FeaturedDescription
-                description={description}
-                maxDescriptionLength={maxDescriptionLength}
-                event={event}
-                toggleDescription={toggleDescription}
-                showFullDescription={showFullDescription}
+        <div
+            className="relative flex flex-col max-w-[47%] p-2 bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
+            <FeaturedImage event={event}/>
+            <section className="px-4">
+                <h2 className="font-medium text-sm md:text-lg text-gray-800 mb-2" title={event.title}>
+                    {event.title}
+                </h2>
 
-            />
-            <FeaturedDetails event={event} />
-            <FeaturedButton handleClick={handleClick} />
+                <FeaturedDescription
+                    description={description}
+                    maxDescriptionLength={maxDescriptionLength}
+                    event={event}
+                    toggleDescription={toggleDescription}
+                    showFullDescription={showFullDescription}
+
+                />
+                <FeaturedDetails event={event}/>
+            </section>
+            <FeaturedButton handleClick={handleClick}/>
         </div>
     );
 };
 
-const FeaturedImage = ({ event }) => (
-    <div className="relative rounded-lg overflow-hidden md:w-auto h-48 lg:h-52 mb-4">
+const FeaturedImage = ({event}) => (
+    <div className="relative rounded-lg overflow-hidden md:w-auto h-[45%] flex-grow lg:h-52 mb-4">
         <img
             src={event.event_media[0]?.media_url || "https://source.unsplash.com/random/900x700/?building"}
             alt="Featured Image"
@@ -60,10 +64,10 @@ const FeaturedImage = ({ event }) => (
     </div>
 );
 
-const FeaturedDescription = ({ description, maxDescriptionLength, event, toggleDescription, showFullDescription }) => (
+const FeaturedDescription = ({description, maxDescriptionLength, event, toggleDescription, showFullDescription}) => (
     <p
-        className="text-sm md:text-xs text-gray-600 mb-4 hidden lg:block"
-        style={{ whiteSpace: "pre-line" }}
+        className="text-sm md:text-xs text-gray-600 md:mb-4 hidden lg:block"
+        style={{whiteSpace: "pre-line"}}
         title={event.description}
     >
         {description}
@@ -78,21 +82,22 @@ const FeaturedDescription = ({ description, maxDescriptionLength, event, toggleD
     </p>
 );
 
-const FeaturedDetails = ({ event }) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <FeaturedDetail icon={<FaHome className="text-green-200" size={18} />} text={`${event.amount_person} Rp`} />
-        <FeaturedDetail icon={<FaCouch className="text-yellow-200" size={18} />} text={`${event.event_participant.length} / ${event.max_participant}`} />
+const FeaturedDetails = ({event}) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <FeaturedDetail icon={<FaHome className="text-green-200" size={18}/>} text={`${event.amount_person} Rp`}/>
+        <FeaturedDetail icon={<FaCouch className="text-yellow-200" size={18}/>}
+                        text={`${event.event_participant.length} / ${event.max_participant}`}/>
     </div>
 );
 
-const FeaturedDetail = ({ icon, text }) => (
+const FeaturedDetail = ({icon, text}) => (
     <div className="flex items-center space-x-2">
         {icon}
         <span className="text-xs md:text-sm text-gray-500">{text}</span>
     </div>
 );
 
-const FeaturedButton = ({ handleClick }) => (
+const FeaturedButton = ({handleClick}) => (
     <Button
         label="More"
         onClick={handleClick}

@@ -42,7 +42,7 @@ function DropdownProfileComponent() {
                     src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibHVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=face&w=500&q=200"
                     alt="jane avatar"
                 />
-                {isOpen && <span className="mx-1 text-gray-800">{userName}</span>}
+                {isOpen && <span className="mx-1 text-gray-800 hidden md:block">{userName}</span>}
                 <svg
                     className="w-5 h-5 mx-1"
                     viewBox="0 0 24 24"

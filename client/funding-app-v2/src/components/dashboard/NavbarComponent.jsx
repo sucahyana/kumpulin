@@ -77,7 +77,7 @@ const NavbarComponent = ({isSticky, showNavbar}) => {
                        handleKeyPress={handleKeyPress}/>
             <div className="flex-initial">
                 <div className="flex justify-end items-center relative gap-4 sm:gap-8 lg:gap-12">
-                    <NotificationComponent/>
+                    {/*<NotificationComponent/>*/}
                     <DropdownProfileComponent/>
                 </div>
             </div>
