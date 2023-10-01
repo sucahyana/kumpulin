@@ -12,16 +12,16 @@ const AdsGalleria = () => {
             value={images}
             responsiveOptions={[
                 {
-                    breakpoint: '1024px', // Sesuaikan dengan breakpoint yang Anda inginkan
-                    numVisible: 3, // Jumlah item yang terlihat pada breakpoint ini
+                    breakpoint: '1024px',
+                    numVisible: 3,
                 },
                 {
-                    breakpoint: '768px', // Sesuaikan dengan breakpoint yang Anda inginkan
-                    numVisible: 2, // Jumlah item yang terlihat pada breakpoint ini
+                    breakpoint: '768px',
+                    numVisible: 2,
                 },
                 {
-                    breakpoint: '480px', // Sesuaikan dengan breakpoint yang Anda inginkan
-                    numVisible: 1, // Jumlah item yang terlihat pada breakpoint ini
+                    breakpoint: '480px',
+                    numVisible: 1,
                 },
             ]}
             style={{ maxWidth: '100%', margin: '0 auto', width: '100%' }}

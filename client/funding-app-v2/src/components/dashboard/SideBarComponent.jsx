@@ -8,11 +8,11 @@ import {Link} from "react-router-dom";
 export const SideBarComponent = () => {
     return (
         <aside
-            className="sticky top-0 flex flex-col w-64 h-screen p-8 overflow-y-auto bg-gray-100 border-r drop-shadow-sm rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+            className="hidden lg:flex flex-col justify-between h-screen p-5 border-r sticky top-0 whitespace-nowrap px-12">
             <Link to={"/"} className="mx-auto">
                 <img className="w-auto h-36 bg-none" src={logo} alt="Logo Kumpulin" />
             </Link>
-            <div className="flex flex-col justify-between flex-1 mt-24">
+            <div className="flex flex-col justify-between w-full mt-24">
                 <nav className="-mx-3 space-y-6 ">
                     <div className="space-y-3 ">
                         <label className="px-3 text-base text-gray-500 font-semibold uppercase dark:text-gray-400">Menu</label>
@@ -29,7 +29,7 @@ export const SideBarComponent = () => {
                            to={"#"} >
                             <RiCalendarEventLine size="24px" />
 
-                            <span className="mx-2 text-xl font-medium">Acara Kamu</span>
+                            <p className="mx-2 text-xl font-medium whitespace-nowrap">Acara Kamu</p>
                         </Link>
                         <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                            to={"#"}>
@@ -40,8 +40,8 @@ export const SideBarComponent = () => {
                     </div>
                 </nav>
             </div>
-            <footer className="mt-auto text-sm text-center text-gray-600 dark:text-gray-300">
-                <p>&copy; {new Date().getFullYear()} Kumpulin. All rights reserved.</p>
+            <footer className="flex flex-col mt-auto text-sm text-center text-gray-600">
+                <p>&copy; {new Date().getFullYear()} Kumpulin.</p> <p className="">All rights reserved.</p>
             </footer>
         </aside>
     );

@@ -69,7 +69,7 @@ const Home = () => {
                     <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">
                         Rekomendasi Acara
                     </h2>
-                    <div className="mt-4 flex flex-wrap gap-4 sm:gap-6">
+                    <div className="mt-4 flex flex-wrap gap-2 justify-center ">
                         {eventData?.map((event) => (
                             <FeaturedCard key={event.id} data={event} />
                         ))}

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import SideBarComponent from '../../components/dashboard/SideBarComponent';
 import ProfileCard from '../../components/ProfileCard';
 import NavbarComponent from '../../components/dashboard/NavbarComponent.jsx';
 import RightNav from '../dashboard/RightNav.jsx';
-import { Toaster } from 'react-hot-toast';
+import {Toaster} from 'react-hot-toast';
 
-const Starter = ({ Content }) => {
+const Starter = ({Content}) => {
     const [isSticky, setIsSticky] = useState(false);
     const [isScrolledDown, setIsScrolledDown] = useState(false);
     const [lastScrollPosition, setLastScrollPosition] = useState(0);
@@ -31,19 +31,20 @@ const Starter = ({ Content }) => {
     }, [lastScrollPosition]);
 
     return (
-        <div className="flex flex-col lg:flex-row bg-gray-100 min-h-screen">
-<SideBarComponent/>
-            <div className="flex-grow flex flex-col w-full lg:w-3/4">
+        <div className="flex flex-col lg:flex-row bg-gray-100 min-h-screen mb-20 lg:mb-0">
+
+            <SideBarComponent/>
+            <div className="flex flex-col w-full">
                 <NavbarComponent
                     isSticky={isSticky}
                     showNavbar={showNavbar}
                 />
-                <main className="m-4 mt-0 p-4 lg:m-8 lg:mt-0 lg:p-8 flex-grow">
+                <main className="flex-grow">
                     {Content}
                 </main>
-                <RightNav />
+                <RightNav/>
             </div>
-            <Toaster />
+            <Toaster/>
         </div>
     );
 };
