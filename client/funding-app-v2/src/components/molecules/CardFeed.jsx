@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ProgressBar } from 'primereact/progressbar';
-import { Button } from 'primereact/button';
-import { useNavigate } from 'react-router-dom';
-import { format } from "date-fns";
+import {ProgressBar} from 'primereact/progressbar';
+import {Button} from 'primereact/button';
+import {useNavigate} from 'react-router-dom';
+import {format} from "date-fns";
 import Loader from "../Loader.jsx";
 
-const CardFeed = ({ event, userData }) => {
+const CardFeed = ({event, userData}) => {
     const navigate = useNavigate();
 
     if (!event || !userData) {
-        return <Loader />;
+        return <Loader/>;
     }
 
     const {
@@ -35,21 +35,25 @@ const CardFeed = ({ event, userData }) => {
     };
 
     return (
-        <div className="max-w-full sm:mx-8 lg:mx-0  w-screen lg:w-fit bg-white shadow-md rounded-lg p-6 space-y-4 transform transition-transform duration-500 ease-in-out hover:shadow-xl hover:-translate-y-1">
-            <div className="flex flex-row     justify-between items-center space-x-4">
-                <EventImage eventMedia={event_media[0]} title={title} />
-                <EventDetails title={title} category={category} />
-            </div>
+        <div
+            className="flex flex-col justify-around max-w-full lg:w-[calc(50%-8px)] xl:w-[calc(33%-8px)]  sm:mx-8 lg:mx-0 w-screen md:w-fit bg-white shadow-md rounded-lg p-6 transform transition-transform duration-500 ease-in-out hover:shadow-xl hover:-translate-y-1">
+            <section className="flex flex-col justify-between">
+                <div className="flex flex-row justify-between items-center space-x-4">
+                    <EventImage eventMedia={event_media[0]} title={title}/>
+                    <EventDetails title={title} category={category}/>
+                </div>
+                <FollowersProgressBar participants={participants} maxParticipants={max_participant}/>
+            </section>
+            <section className="flex flex-col justify-between">
+                <div className="grid grid-cols-2  gap-4 mt-4">
+                    <PaymentStatus userParticipant={userParticipant} paymentPercentage={paymentPercentage}
+                                   amount={amount_person}/>
+                    <PaidParticipantsCount paidParticipantsCount={paidParticipantsCount}/>
+                    <EventDueDate end_date={end_date}/>
+                </div>
 
-            <FollowersProgressBar participants={participants} maxParticipants={max_participant} />
-
-            <div className="grid grid-cols-2  gap-4 mt-4">
-                <PaymentStatus userParticipant={userParticipant} paymentPercentage={paymentPercentage} amount={amount_person} />
-                <PaidParticipantsCount paidParticipantsCount={paidParticipantsCount} />
-                <EventDueDate  end_date={end_date} />
-            </div>
-
-            <MoreButton handleClick={handleClick} />
+                <MoreButton handleClick={handleClick}/>
+            </section>
         </div>
     );
 };
@@ -71,7 +75,7 @@ CardFeed.propTypes = {
     }).isRequired
 };
 
-const EventImage = ({ eventMedia, title }) => (
+const EventImage = ({eventMedia, title}) => (
     <img
         src={eventMedia.media_url}
         alt={title}
@@ -79,7 +83,7 @@ const EventImage = ({ eventMedia, title }) => (
     />
 );
 
-const EventDetails = ({ title, category }) => (
+const EventDetails = ({title, category}) => (
     <div className="flex flex-col text-center sm:text-right space-y-1">
         <h5 className="text-lg font-semibold text-gray-800 hover:text-gray-900 transition-colors duration-300">
             {title}
@@ -90,7 +94,7 @@ const EventDetails = ({ title, category }) => (
     </div>
 );
 
-const FollowersProgressBar = ({ participants, maxParticipants }) => (
+const FollowersProgressBar = ({participants, maxParticipants}) => (
     <div className="flex flex-col space-y-2">
         <h5 className="text-lg font-semibold text-gray-700">
             Pengikut Acara:
@@ -101,31 +105,26 @@ const FollowersProgressBar = ({ participants, maxParticipants }) => (
         <ProgressBar
             value={Math.round((participants.length / maxParticipants) * 100)}
             className="shadow-md rounded hover:shadow-lg transition-shadow duration-300 font-poppins"
-            // style={{
-            //     background: 'linear-gradient(to right, #E0E0E0, #E0E0E0)',
-            // }}
         />
     </div>
 );
 
-const PaymentStatus = ({ userParticipant, paymentPercentage, amount }) => (
-    <div className="flex flex-col space-y-2 bg-gradient-to-r from-blue-200 to-blue-100 justify-center shadow-lg hover:shadow-xl transition-all duration-300 p-4 rounded-lg ">
+const PaymentStatus = ({userParticipant, paymentPercentage, amount}) => (
+    <div
+        className="flex flex-col space-y-2 bg-gradient-to-r from-green-200 to-green-100 justify-center shadow-lg hover:shadow-xl transition-all duration-300 p-4 rounded-lg ">
         {userParticipant ? (
             <>
-                <h5 className="text-sm font-medium text-green-800 text-center">
+                <h5 className="text-sm font-medium text-green-700 text-center">
                     Kamu sudah bayar
                 </h5>
-                <h5 className="text-sm font-semibold text-green-900 -mt-2 mx-auto">
+                <h5 className="text-sm font-semibold text-green-800 -mt-2 mx-auto">
                     {userParticipant.payment_amount / 1000}K
-                    <span className="ml-1 text-green-800 font-medium">Dari </span>
+                    <span className="ml-1 text-green-700 font-medium">Dari </span>
                     {amount / 1000}K
                 </h5>
                 <ProgressBar
                     value={paymentPercentage()}
                     className="shadow-md rounded hover:shadow-lg transition-shadow duration-300 font-poppins"
-                    // style={{
-                    //     background: 'linear-gradient(to right, #88D86C, #5CB682)',
-                    // }}
                 />
 
             </>
@@ -135,9 +134,10 @@ const PaymentStatus = ({ userParticipant, paymentPercentage, amount }) => (
     </div>
 );
 
-const PaidParticipantsCount = ({ paidParticipantsCount }) => (
-    <div className="flex items-center justify-center bg-gradient-to-r from-blue-200 to-blue-100 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-4 ">
-        <span className="text-sm font-medium text-blue-800 ">
+const PaidParticipantsCount = ({paidParticipantsCount}) => (
+    <div
+        className="flex items-center justify-center bg-gradient-to-r from-blue-200 to-blue-100 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-4 ">
+        <span className="text-sm font-medium text-blue-800 text-center">
             <span className="text-gray-900">
                 {paidParticipantsCount}
             </span> Orang Sudah Lunas
@@ -145,18 +145,19 @@ const PaidParticipantsCount = ({ paidParticipantsCount }) => (
     </div>
 );
 
-const EventDueDate = ({ end_date }) => (
-    <div className="flex items-center justify-center col-span-2 bg-gradient-to-r from-yellow-200 to-yellow-100 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-4">
-        <span className="text-sm font-semibold text-yellow-800">
+const EventDueDate = ({end_date}) => (
+    <div
+        className="flex items-center justify-center col-span-2 bg-gradient-to-r from-yellow-200 to-yellow-100 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 p-4">
+        <span className="text-sm font-semibold text-yellow-700 text-center">
             Batas Acara harus lunas {format(new Date(end_date), 'dd MMMM yyyy')}
         </span>
     </div>
 );
 
-const MoreButton = ({ handleClick }) => (
+const MoreButton = ({handleClick}) => (
     <Button
         onClick={handleClick}
-        label="More"
+        label="Lihat"
         className="font-poppins text-white bg-gradient-to-r from-blue-500 to-blue-400 border-none font-medium mt-4 w-full rounded-lg hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-500 transition duration-300 transform "
     />
 );

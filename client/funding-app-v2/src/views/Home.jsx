@@ -50,7 +50,7 @@ const Home = () => {
                     <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">
                         Ini Funding Kamu Loh!
                     </h2>
-                    <div className="mt-4 flex flex-wrap gap-4 sm:gap-6 justify-center">
+                    <div className="mt-4 flex flex-wrap gap-y-4 justify-around xl:flex-grow">
                         {userEvents?.length > 0 ? (
                             userEvents?.map((event) => (
                                 <CardFeed key={event.id} event={event} userData={userData} />
@@ -69,7 +69,7 @@ const Home = () => {
                     <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">
                         Rekomendasi Acara
                     </h2>
-                    <div className="mt-4 flex flex-wrap gap-0 gap-y-4 justify-around ">
+                    <div className="mt-4 flex flex-wrap gap-y-4 justify-around ">
                         {eventData?.map((event) => (
                             <FeaturedCard key={event.id} data={event} />
                         ))}

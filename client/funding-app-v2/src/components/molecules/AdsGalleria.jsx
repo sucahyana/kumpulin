@@ -8,42 +8,45 @@ const AdsGalleria = () => {
     ];
 
     return (
-        <Galleria
-            value={images}
-            responsiveOptions={[
-                {
-                    breakpoint: '1024px',
-                    numVisible: 3,
-                },
-                {
-                    breakpoint: '768px',
-                    numVisible: 2,
-                },
-                {
-                    breakpoint: '480px',
-                    numVisible: 1,
-                },
-            ]}
-            style={{ maxWidth: '100%', margin: '0 auto', width: '100%' }}
-            showThumbnails={false}
-            autoPlay
-            circular
-            className="mx-auto max-w-4xl  overflow-hidden mt-2 md:mt-4 lg:mt-6 transition-all duration-500 ease-in-out shadow-lg"
-            transitionInterval={1500}
-            showIndicators
-            item={(item) => (
-                <img
-                    src={item.source}
-                    alt="Gambar"
-                    className="shadow-md rounded-lg min-h-[20rem] max-h-80 w-full bg-cover bg-center hover:shadow-xl transition-shadow duration-300"
-                />
-            )}
-            pt={{
-                indicators: { className: 'bg-gray-500' },
-                indicator: { className: 'text-blue-900' },
-                root: { className: 'rounded shadow-md hover:shadow-lg transition-shadow duration-300' },
-            }}
-        />
+        <div className="w-full xl:w-2/3 xl:mx-auto">
+            <Galleria
+                value={images}
+                responsiveOptions={[
+                    {
+                        breakpoint: '1024px',
+                        numVisible: 3,
+                    },
+                    {
+                        breakpoint: '768px',
+                        numVisible: 2,
+                    },
+                    {
+                        breakpoint: '480px',
+                        numVisible: 1,
+                    },
+                ]}
+                style={{ maxWidth: '100%', margin: '0 auto' }}
+                showThumbnails={false}
+                autoPlay
+                circular
+                className="mx-auto overflow-hidden mt-2 md:mt-4 lg:mt-6 transition-all duration-500 ease-in-out shadow-lg"
+                transitionInterval={1500}
+                showIndicators
+                item={(item) => (
+                    <img
+                        src={item.source}
+                        alt="Gambar"
+                        className="rounded rounded-b-none h-40 md:h-60 lg:h-80 w-full bg-cover bg-center hover:shadow-xl transition-shadow duration-300"
+                    />
+                )}
+                pt={{
+                    indicators: { className: 'bg-gradient-to-r from-blue-100 to-green-100 ' },
+                    indicator: { className: 'text-red-900' },
+                    root: { className: 'rounded shadow-md hover:shadow-lg transition-shadow duration-300 ' },
+                }}
+            />
+        </div>
+
     );
 };
 

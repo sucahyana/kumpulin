@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import {FaCouch, FaHome} from "react-icons/fa";
 import {Button} from "primereact/button";
 import {format} from "date-fns";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import {Image} from "primereact/image";
 
 const FeaturedCard = ({data}) => {
     const event = data;
@@ -26,36 +27,40 @@ const FeaturedCard = ({data}) => {
 
     return (
         <div
-            className="relative flex flex-col max-w-[47%] p-2 bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
-            <FeaturedImage event={event}/>
-            <section className="px-4">
-                <h2 className="font-medium text-sm md:text-lg text-gray-800 mb-2" title={event.title}>
-                    {event.title}
-                </h2>
+            className="relative flex flex-col justify-between max-w-[49%] lg:w-[calc(50%-8px)] xl:w-[calc(33%-8px)] md:max-h-[50%] p-2 md:p-4 bg-white shadow-md rounded overflow-hidden hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1">
 
-                <FeaturedDescription
-                    description={description}
-                    maxDescriptionLength={maxDescriptionLength}
-                    event={event}
-                    toggleDescription={toggleDescription}
-                    showFullDescription={showFullDescription}
+            <section>
+                <Link to={`/event/${event.code_event}`}>
+                    <FeaturedImage event={event}/>
+                </Link>
+                <section className="px-4 ">
+                    <h2 className="font-medium text-sm md:text-lg text-gray-800 mb-2" title={event.title}>
+                        {event.title}
+                    </h2>
 
-                />
-                <FeaturedDetails event={event}/>
+                    <FeaturedDescription
+                        description={description}
+                        maxDescriptionLength={maxDescriptionLength}
+                        event={event}
+                        toggleDescription={toggleDescription}
+                        showFullDescription={showFullDescription}
+
+                    />
+                </section>
             </section>
-            <FeaturedButton handleClick={handleClick}/>
+            <FeaturedDetails event={event}/>
+            {/*<FeaturedButton handleClick={handleClick}/>*/}
         </div>
     );
 };
 
 const FeaturedImage = ({event}) => (
-    <div className="relative rounded-lg overflow-hidden md:w-auto h-[45%] flex-grow lg:h-52 mb-4">
+    <div className="relative rounded-lg mb-4 overflow-clip ">
         <img
             src={event.event_media[0]?.media_url || "https://source.unsplash.com/random/900x700/?building"}
             alt="Featured Image"
-            className="object-cover transition-transform duration-300 transform ease-in-out hover:scale-110"
+            className=" bg-cover bg-center h-[150px] md:h-[400px] w-screen transition-transform  duration-300 transform ease-in-out hover:scale-110"
         />
-        <div className="absolute inset-0 bg-black opacity-10"></div>
         <span
             className="absolute top-0 left-0 mt-2 md:mt-3 ml-2 md:ml-3 px-2 md:px-3 py-1 md:py-2 text-xs md:text-sm font-medium text-white bg-red-500 rounded-lg"
         >

@@ -8,34 +8,34 @@ import {Link} from "react-router-dom";
 export const SideBarComponent = () => {
     return (
         <aside
-            className="hidden lg:flex flex-col justify-between h-screen p-5 border-r sticky top-0 whitespace-nowrap px-12">
+            className="hidden lg:flex flex-col justify-between h-screen p-5 border-r sticky top-0 whitespace-nowrap px-4 xl:px-12">
             <Link to={"/"} className="mx-auto">
                 <img className="w-auto h-36 bg-none" src={logo} alt="Logo Kumpulin" />
             </Link>
             <div className="flex flex-col justify-between w-full mt-24">
                 <nav className="-mx-3 space-y-6 ">
-                    <div className="space-y-3 ">
-                        <label className="px-3 text-base text-gray-500 font-semibold uppercase dark:text-gray-400">Menu</label>
+                    <div className="space-y-2 ">
+                        <label className="px-3 text-base text-gray-500 font-semibold uppercase ">Menu</label>
                         <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                             to={'/'}>
                             <div>
                                 <FaHome size="24px" />
                             </div>
 
-                            <span className="mx-2 text-xl font-medium">Rumah</span>
+                            <span className="mx-2 text-lg xl:text-xl font-medium">Rumah</span>
                         </Link>
 
                         <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                            to={"#"} >
                             <RiCalendarEventLine size="24px" />
 
-                            <p className="mx-2 text-xl font-medium whitespace-nowrap">Acara Kamu</p>
+                            <p className="mx-2 text-lg xl:text-xl font-medium whitespace-nowrap">Acara Kamu</p>
                         </Link>
                         <Link className="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                            to={"#"}>
                             <FiSearch size="24px" />
 
-                            <span className="mx-2 text-xl font-medium">Pencarian</span>
+                            <span className="mx-2 text-lg xl:text-xl font-medium">Pencarian</span>
                         </Link>
                     </div>
                 </nav>
