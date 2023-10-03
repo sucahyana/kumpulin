@@ -53,7 +53,7 @@ const NavbarComponent = ({isSticky, showNavbar}) => {
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target?.value)}
                             placeholder="Search for users or events..."
-                            className="sm:min-w-[300px] lg:min-w-[600px] rounded-lg shadow-sm"
+                            className="w-[150px] lg:min-w-[600px] rounded-lg shadow-sm"
                             onKeyPress={handleKeyPress}
                         />
                         {isLoading && (

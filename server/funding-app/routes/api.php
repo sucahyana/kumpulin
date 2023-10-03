@@ -34,7 +34,7 @@ Route::prefix('v1')->group(function () {
     // Event routes
     Route::middleware('auth:sanctum')->prefix('event')->group(function () {
         Route::post('/', [EventController::class, 'createEvent'])->name('createEvent');
-        Route::get('/', [EventController::class, 'getAllEventsWithRelations'])->name('getAllEventsWithRelations');
+        Route::get('/', [EventController::class, 'getAllEventsWithRelations'])->name('getAllEventsWithRelations');  
         Route::get('/{eventCode}/code', [EventController::class, 'getEventByCode'])->name('getEventByCode');
         Route::post('/{eventCode}/code', [EventController::class, 'updateEvent'])->name('updateEvent');
         Route::get('/{eventCode}/share', [EventController::class, 'share'])->name('shareEvent');

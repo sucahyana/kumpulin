@@ -44,7 +44,7 @@ const Home = () => {
 
     function renderContent() {
         return (
-            <div className="flex flex-col p-4 sm:p-8 space-y-6 sm:space-y-16">
+            <div className="flex flex-col space-y-6 sm:space-y-16">
                 {carousel}
                 <section>
                     <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">

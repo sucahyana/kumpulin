@@ -13,6 +13,7 @@ import {TbSquareRoundedPlusFilled} from 'react-icons/tb';
 import {requestJoinEvent} from '../../services/apiService.jsx';
 import Modal from 'react-modal';
 import {InputText} from 'primereact/inputtext';
+import {AiFillEdit} from "react-icons/ai";
 
 const EventDetail = ({Content, eventData, children}) => {
     const navigate = useNavigate();
@@ -237,7 +238,7 @@ const EventDetail = ({Content, eventData, children}) => {
     return (
         <div className="flex bg-gray-100 min-h-screen">
             <div className="flex-grow flex flex-col">
-                <main className="flex-grow flex flex-col items-center mt-4 mb-6 p-8 w-full max-w-[1150px] mx-auto">
+                <main className=" flex flex-col items-center mt-1 md:mt-4 mb-6 p-0 md:p-8 w-full max-w-[1150px] mx-auto">
                     {loading ? (
                         <div className="p-fluid">
                             <div className="p-field">
@@ -250,9 +251,10 @@ const EventDetail = ({Content, eventData, children}) => {
                             {currentUser && id_user === currentUser.id && (
                                 <Button
                                     onClick={handleEdit}
-                                    className="mt-4 font-poppins bg-white text-blue-500 font-bold text-lg shadow-2xl flex items-center justify-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
+                                    label={'Ubah Sesuatu Didalam Acara'}
+                                    className="mt-2 md:mt-4 font-poppins bg-white text-blue-500 font-bold text-sm md:text-lg shadow-lg flex items-center justify-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
                                 >
-                                    <FaEdit size={20}/> Ubah Sesuatu Didalam Acara
+                                    <AiFillEdit size={20}/>
                                 </Button>
                             )}
                             <EventDetail/>
