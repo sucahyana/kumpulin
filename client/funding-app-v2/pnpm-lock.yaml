@@ -8,6 +8,9 @@ dependencies:
   '@mantine/core':
     specifier: ^6.0.21
     version: 6.0.21(@emotion/react@11.11.1)(@mantine/hooks@6.0.21)(@types/react@18.2.23)(react-dom@18.2.0)(react@18.2.0)
+  '@react-buddy/ide-toolbox':
+    specifier: ^2.4.0
+    version: 2.4.0(react@18.2.0)
   '@redux-devtools/extension':
     specifier: ^3.2.5
     version: 3.2.5(redux@4.2.1)
@@ -1025,6 +1028,14 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
     dependencies:
       '@babel/runtime': 7.23.1
+      react: 18.2.0
+    dev: false
+
+  /@react-buddy/ide-toolbox@2.4.0(react@18.2.0):
+    resolution: {integrity: sha512-TWHX6gwa0Gop7215uHhjFMbYLLdjM/b9rr0wYE3E0m7GNJ56gbPpbZiq86w9uI8zksl827acqGeT437MkuO64w==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+    dependencies:
       react: 18.2.0
     dev: false
 

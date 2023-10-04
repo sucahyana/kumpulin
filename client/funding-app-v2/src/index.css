@@ -18,3 +18,13 @@ body {
 .font-poppins{
     font-family: 'Poppins', sans-serif;
 }
+
+/* styles.css or another CSS file */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

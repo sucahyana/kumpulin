@@ -61,7 +61,7 @@ const EventCarousel = ({ images }) => {
 
     function Thumbnails() {
         return (
-            <div className={`flex flex-row p-5 md:flex-col items-center justify-center gap-1 md:gap-4 w-full md:w-[230px] ${images.length > 2 ? 'mb-2' : ''}`}>
+            <div className={`flex flex-row p-1 md:flex-col items-center justify-center gap-4 md:gap-4 w-full md:w-[230px] ${images.length > 2 ? 'mb-2' : ''} overflow-x-auto whitespace-nowrap md:whitespace-normal scrollbar-hide`}>
                 {images.length > 2 && <ArrowButton direction="up" onClick={handlePrev} />}
                 {getThumbnails().map((image, index) => (
                     <Thumbnail image={image} index={index} key={index} />
@@ -75,22 +75,18 @@ const EventCarousel = ({ images }) => {
         return (
             <button
                 onClick={onClick}
-                className="-mx-2 shadow-lg h-full w-6 md:h-8 md:w-full hover:scale-105 hover:bg-blue-300 cursor-pointer rounded bg-gray-200 flex items-center justify-center"
+                className="-mx-2 hidden md:flex shadow-lg h-full w-6 md:h-8 md:w-full hover:scale-105 hover:bg-blue-300 cursor-pointer rounded bg-gray-200 items-center justify-center"
             >
                 {direction === 'up' ? (
-                    <>
-                        <IoIosArrowBack className="text-xl md:hidden" />
-                        <IoIosArrowUp className="text-2xl hidden md:inline-block" />
-                    </>
+                    <IoIosArrowUp className="text-2xl" />
                 ) : (
-                    <>
-                        <IoIosArrowForward className="text-xl md:hidden" />
-                        <IoIosArrowDown className="text-2xl hidden md:inline-block" />
-                    </>
+                    <IoIosArrowDown className="text-2xl" />
                 )}
             </button>
         );
     }
+
+
 
 
     function Thumbnail({ image, index }) {
@@ -99,9 +95,9 @@ const EventCarousel = ({ images }) => {
         return (
             <button
                 onClick={() => handleImageClick(thumbnailIndex)}
-                className={`h-20 w-[90px] md:h-60 md:w-60 bg-contain shadow-xl rounded-lg cursor-pointer transform hover:scale-105 transition-transform duration-300 ${currentIndex === thumbnailIndex ? 'ring md:ring-4 ring-blue-500' : 'opacity-80 hover:opacity-100'}`}
+                className={`h-20 w-[90px] md:h-60 md:w-60 bg-contain  rounded cursor-pointer transform hover:scale-105 transition-transform duration-300 ${currentIndex === thumbnailIndex ? 'ring md:ring-4 ring-blue-500' : 'opacity-80 hover:opacity-100'}`}
             >
-                <img className="w-full  max-h-[calc(100%-2px)] border h-full md:h-full md:w-full rounded-lg bg-cover transition duration-300 ease-in-out" alt={`Thumbnail ${index + 1}`} src={image} />
+                <img className="w-full  max-h-[calc(100%-2px)] border h-full md:h-full md:w-full rounded bg-cover transition duration-300 ease-in-out" alt={`Thumbnail ${index + 1}`} src={image} />
             </button>
         );
     }
