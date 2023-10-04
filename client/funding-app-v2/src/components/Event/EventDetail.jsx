@@ -113,21 +113,21 @@ const EventDetail = ({Content, eventData, children}) => {
     const EventDetail = () => (
         <div className="flex-col gap-8 justify-center my-4 w-full">
             <div
-                className="relative rounded-lg bg-white p-8 shadow-2xl hover:shadow-4xl transition-shadow duration-300">
+                className="relative rounded-lg bg-white p-4 md:p-8 shadow-2xl hover:shadow-4xl transition-shadow duration-300">
                 <div className="space-y-1">
                     {title ? (
-                        <h2 className="text-2xl font-extrabold text-gray-800">{title}</h2>
+                        <h2 className="text-lg md:text-2xl font-extrabold text-gray-800">{title}</h2>
                     ) : (
                         <Skeleton shape="text" width="80%"/>
                     )}
                     {category ? (
-                        <p className="text-xl font-semibold text-blue-600">{category}</p>
+                        <p className="text-base md:text-xl font-semibold text-blue-600">{category}</p>
                     ) : (
                         <Skeleton shape="text" width="60%"/>
                     )}
                 </div>
                 {amount_person ? (
-                    <div className="text-2xl text-right text-green-600">
+                    <div className="text-lg md:text-2xl text-right text-green-600">
                         <span className="font-bold">{formatCurrency(amount_person)}</span>
                         <span className="font-medium text-blue-500"> Rupiah</span>
                     </div>
@@ -141,7 +141,7 @@ const EventDetail = ({Content, eventData, children}) => {
     const EventFooter = () => (
             <div className="mx-auto w-full max-w-[1150px]">
                 <div
-                    className="rounded-lg bg-white p-6 flex items-start justify-between space-x-8 text-black shadow-lg  transition-shadow duration-300">
+                    className="rounded-lg bg-white p-2 md:p-6 gap-4 flex flex-col md:flex-row items-start justify-between space-x-0 md:space-x-8 text-black shadow-lg  transition-shadow duration-300">
                     <div className="flex items-center space-x-4">
                         <Link to={currentUser && id_user === currentUser.id ? '/profile' : `/profile/${id_user}`}>
                             <img
@@ -160,13 +160,13 @@ const EventDetail = ({Content, eventData, children}) => {
                         </div>
                     </div>
 
-                    <div className="flex flex-col bg-blue-100 rounded-lg p-4 space-y-2 text-lg text-blue-900 font-semibold">
+                    <div className="flex flex-col bg-blue-100 rounded-lg p-2 md:p-4 space-y-2 text-sm md:text-lg text-blue-900 font-semibold">
                         {start_date && (
                             <span>Acara Ditutup Pada {format(new Date(start_date), 'dd MMMM yyyy')}</span>
                         )}
                         {end_date && (
                             <span
-                                className="text-base text-red-600">Harus Lunas Sebelum {format(new Date(end_date), 'dd MMMM yyyy')}</span>
+                                className="text-xs md:text-base text-red-600">Harus Lunas Sebelum {format(new Date(end_date), 'dd MMMM yyyy')}</span>
                         )}
                     </div>
                 </div>
