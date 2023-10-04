@@ -141,22 +141,22 @@ const EventDetail = ({Content, eventData, children}) => {
     const EventFooter = () => (
             <div className="mx-auto w-full max-w-[1150px]">
                 <div
-                    className="rounded-lg bg-white p-2 md:p-6 gap-4 flex flex-col md:flex-row items-start justify-between space-x-0 md:space-x-8 text-black shadow-lg  transition-shadow duration-300">
+                    className="rounded-lg bg-white p-4 md:p-6 gap-4 flex flex-col md:flex-row items-start justify-between space-x-0 md:space-x-8 text-black shadow-lg  transition-shadow duration-300">
                     <div className="flex items-center space-x-4">
                         <Link to={currentUser && id_user === currentUser.id ? '/profile' : `/profile/${id_user}`}>
                             <img
-                                className="rounded-full w-16 h-16 object-cover flex text-center hover:scale-105 shadow-lg border-2 border-blue-200"
+                                className="rounded-full w-10 h-10 md:w-16 md:h-16 object-cover flex text-center hover:scale-105 shadow-lg border-2 border-blue-200"
                                 alt="Profile Picture"
                                 src={user.profile_image || 'https://source.unsplash.com/random/60x60'}
                             />
                         </Link>
                         <div className="flex flex-col">
                             {user.name ? (
-                                <span className="text-xl font-semibold">{user.name}</span>
+                                <span className="text-base md:text-xl font-semibold">{user.name}</span>
                             ) : (
                                 <Skeleton shape="text" width="80%" />
                             )}
-                            <span className="text-sm text-blue-500 font-semibold">Publication</span>
+                            <span className="text-xs md:text-sm text-blue-500 font-semibold">Publication</span>
                         </div>
                     </div>
 
@@ -178,9 +178,9 @@ const EventDetail = ({Content, eventData, children}) => {
     const ShareButton = ({onClick}) => (
         <Button
             onClick={onClick}
-            className="p-2 w-1/2 flex justify-center mt-4 mb-4 shadow-lg rounded-lg font-poppins bg-blue-400 hover:bg-blue-500 hover:scale-105 text-white transition duration-300 ease-in-out"
+            className="p-2 w-full md:w-[calc(50%-2px)] flex justify-center mt-4 mb-4 shadow-lg rounded-lg font-poppins bg-blue-400 hover:bg-blue-500 hover:scale-105 text-white transition duration-300 ease-in-out"
         >
-            <FiShare size={24} className="mr-4"/> Bagikan atau Invite
+            <FiShare size={24} className="mr-4 "/> <p className="text-sm whitespace-nowrap">Bagikan atau Invite</p>
         </Button>
     );
 
