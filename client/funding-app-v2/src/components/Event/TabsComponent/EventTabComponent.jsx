@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DeskripsiEvent from "./DeskripsiEvent.jsx";
 import ParticipantEvent from "./ParticipantEvent.jsx";
 import ChatEvent from "./ChatEvent.jsx";
+import {Button} from "primereact/button";
 
 const EventTabComponent = ({ eventData }) => {
     const getInitialTab = () => localStorage.getItem('activeTab') || 'Deskripsi';
@@ -21,16 +22,16 @@ const EventTabComponent = ({ eventData }) => {
 
     return (
         <div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+            <div className="grid grid-cols-3  gap-2 md:gap-5 mb-8">
                 {tabs.map(({ name }) => (
-                    <button
+                    <Button
                         key={name}
                         onClick={() => setActiveTab(name)}
-                        className={`p-4 rounded-xl shadow-md flex items-center justify-center 
+                        className={`p-1 md:p-4 rounded text-sm md:text:base  shadow-md flex items-center justify-center font-poppins
                         ${activeTab === name ? 'bg-blue-500 text-blue-50 border-[4px] border-solid border-blue-200' : 'bg-blue-300 text-blue-50'}`}
                     >
                         {name}
-                    </button>
+                    </Button>
                 ))}
             </div>
             <div className="flex justify-center mt-6">
