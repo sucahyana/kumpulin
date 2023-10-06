@@ -30,7 +30,7 @@ const ProfileGuest = () => {
     const content = (
         <div>
             <ProfileCard user={userData} />
-            <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
+            <div className="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-6">
                 <div className="md:w-1/3">
                     {userData && <UserAboutComponent userData={userData}/>}
                 </div>

@@ -182,49 +182,50 @@ const ParticipantUpdateEvent = (dataEvent) => {
 
     };
     return (
-        <div className="bg-white p-8 shadow-md rounded w-[1000px] mx-auto flex-col border-dashed border-2 ">
-            <h2 className="text-3xl text-center font-bold mb-8 p-4 text-blue-500 border-b-2 border-dashed">Update
+        <div className="bg-white p-4 md:p-8 shadow-md rounded mx-auto flex-col border-dashed border-2 lg:max-w-6xl">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl text-center font-bold mb-6 md:mb-8 p-2 text-blue-500 border-b-2 border-dashed">Update
                 Event</h2>
             <div className="flex flex-col items-start justify-start my-4 gap-4">
-                <label className="relative leading-[24px] font-semibold inline-block w-[120px]" htmlFor="topicName">
+                <label className="relative leading-[24px] font-semibold inline-block w-[calc(50%-10px)]"
+                       htmlFor="topicName">
                     Nama Topik
                 </label>
-                <div className="relative text-sm leading-[20px] text-blue-500 -mt-4 italic text-opacity-50">
+                <div className="relative text-xs sm:text-sm leading-[20px] text-blue-500 -mt-4 italic text-opacity-50">
                     Anda bisa mengganti Judul
                 </div>
                 <input
                     type="text"
                     id="title"
                     name="title"
-                    className="border rounded p-2 w-[600px] shadow-md"
+                    className="border rounded p-2 w-[calc(50%-10px)] shadow-md"
                     value={event.title}
                     placeholder="Silahkan Isi Judul/Nama Topik Event Anda"
                     onChange={handleInputChange}
                 />
             </div>
 
-            <div className="flex flex-col items-center justify-center my-4 gap-4">
-                <label className="relative leading-[24px] font-semibold inline-block w-[120px]">
+            <div className="flex flex-col items-start justify-start my-4 gap-4">
+                <label className="relative leading-[24px] font-semibold inline-block w-[calc(50%-10px)]">
                     Kategori
                 </label>
-                <div className="relative text-sm leading-[20px] -mt-4 text-blue-500 italic text-opacity-50">
+                <div className="relative text-xs sm:text-sm leading-[20px] -mt-4 text-blue-500 italic text-opacity-50">
                     Anda bisa mengganti Kategori yang lain.
                 </div>
-                <div className="grid grid-cols-3 gap-8 w-full">
+                <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 w-full">
                     <button
-                        className={`rounded-md ${category === 'pre-order' ? 'p-2 bg-blue-500 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-lg text-blue-50 border-4 border-solid border-blue-200' : 'p-2 bg-blue-300 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-lg text-blue-50'}`}
+                        className={`rounded-md ${category === 'pre-order' ? 'p-2 bg-blue-500 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-xs sm:text-sm md:text-base lg:text-lg text-blue-50 border-4 border-solid border-blue-200' : 'p-2 bg-blue-300 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-xs sm:text-sm md:text-base lg:text-lg text-blue-50'}`}
                         onClick={() => handleCategoryClick('pre-order')}
                     >
                         Si Kece Pre-Order
                     </button>
                     <button
-                        className={`rounded-md ${category === 'arisan' ? 'p-2 bg-blue-500 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-lg text-blue-50 border-4 border-solid border-blue-200' : 'p-2 bg-blue-300 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-lg text-blue-50'}`}
+                        className={`rounded-md ${category === 'arisan' ? 'p-2 bg-blue-500 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-xs sm:text-sm md:text-base lg:text-lg text-blue-50 border-4 border-solid border-blue-200' : 'p-2 bg-blue-300 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-xs sm:text-sm md:text-base lg:text-lg text-blue-50'}`}
                         onClick={() => handleCategoryClick('arisan')}
                     >
                         Arisan Canggih
                     </button>
                     <button
-                        className={`rounded-md ${category === 'travel' ? 'p-2 bg-blue-500 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-lg text-blue-50 border-4 border-solid border-blue-200' : 'p-2 bg-blue-300 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-lg text-blue-50'}`}
+                        className={`rounded-md ${category === 'travel' ? 'p-2 bg-blue-500 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-xs sm:text-sm md:text-base lg:text-lg text-blue-50 border-4 border-solid border-blue-200' : 'p-2 bg-blue-300 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-xs sm:text-sm md:text-base lg:text-lg text-blue-50'}`}
                         onClick={() => handleCategoryClick('travel')}
                     >
                         Healing Lah
@@ -234,16 +235,16 @@ const ParticipantUpdateEvent = (dataEvent) => {
 
             {/* Bagian Deskripsi */}
             <div className="flex flex-col items-start justify-start my-4 gap-4">
-                <label className="relative leading-[24px] font-semibold inline-block w-[120px]">
+                <label className="relative leading-[24px] font-semibold inline-block w-[calc(50%-10px)]">
                     Deskripsi
                 </label>
-                <div className="relative text-sm leading-[20px] text-blue-500 -mt-4 italic text-opacity-50">
+                <div className="relative text-xs sm:text-sm leading-[20px] text-blue-500 -mt-4 italic text-opacity-50">
                     Anda bisa mengganti isi dari Deskripsi Acara anda.
                 </div>
                 <textarea
                     id="description"
                     name="description"
-                    className="border shadow-md rounded p-2 w-full max-h-[300px] min-h-[300px] "
+                    className="border shadow-md rounded p-2 w-full  min-h-[300px] "
                     value={event.description}
                     placeholder="Silahkan isi dari Deskripsi Acara anda dengan Sedetail detailnya"
                     onChange={handleInputChange}
@@ -252,51 +253,51 @@ const ParticipantUpdateEvent = (dataEvent) => {
 
             <div className="grid grid-cols-2  items-center justify-between gap-8 w-full mb-6">
 
-                <div className="flex flex-col items-start gap-[6px]">
+                <div className="w-full flex flex-col my-4">
 
                     <label className="relative leading-[24px] font-semibold inline-block " htmlFor="startDate">Tanggal
                         Mulai
                     </label>
 
-                    <div className="text-sm leading-[20px] text-blue-500 italic text-opacity-50">
-                        Tangggal Mulai harus lebih 1 hari dari sekarang
+                    <div className="text-xs sm:text-sm leading-[20px] text-blue-500 italic text-opacity-50 mb-4">
+                        Tanggal harus lebih 1 hari dari sekarang
                     </div>
                     <input
                         type="date"
                         id="startDate"
                         name="startDate"
-                        className="relative leading-[24px] w-[300px] shadow-md bg-transparent outline-none border border-gray-300 rounded p-2 text-gray-900"
+                        className="relative leading-[24px] w-full shadow-md bg-transparent outline-none border border-gray-300 rounded p-2 text-gray-900"
                         value={event.startDate}
                         onChange={handleInputChange}
                     />
                 </div>
-                <div className="flex flex-col items-start justify-start gap-[6px]">
+                <div className="w-full flex flex-col  my-4">
                     <label className="relative leading-[24px] font-semibold inline-block " htmlFor="startDate">Tanggal
                         Selesai
                     </label>
-                    <div className="text-sm leading-[20px] text-blue-500 italic text-opacity-50">
-                        Tangggal Selesai tidak boleh sama dengan tanggal mulai
+                    <div className="text-xs sm:text-sm leading-[20px] text-blue-500 italic text-opacity-50 mb-4">
+                        Tidak boleh sama dengan tanggal mulai
                     </div>
                     <input
                         type="date"
                         id="endDate"
                         name="endDate"
-                        className="relative leading-[24px] w-[300px] shadow-md bg-transparent outline-none border border-gray-300 rounded p-2 text-gray-900"
+                        className="relative leading-[24px] w-full shadow-md bg-transparent outline-none border border-gray-300 rounded p-2 text-gray-900"
                         value={event.endDate}
                         onChange={handleInputChange}
                     />
                 </div>
             </div>
 
-            <div className="flex flex-col items-start justify-start gap-4 my-4">
-                <div className="w-[358px] flex flex-col items-start justify-start gap-4 my-4]">
+            <div className="flex flex-col items-start justify-between gap-4 my-4">
+                <div className="w-full flex flex-col  gap-4 my-4">
                     <label className="relative leading-[24px] font-semibold inline-block ">
                         Max participants
                     </label>
-                    <div className="relative -mt-4 text-sm leading-[20px] text-blue-500 italic text-opacity-50">
+                    <div className="relative -mt-4 text-xs sm:text-sm leading-[20px] text-blue-500 italic text-opacity-50">
                         Jumlah particpants kalau penuh berapa?
                     </div>
-                    <div className="flex flex-row items-center justify-start gap-[70px] text-gray-900">
+                    <div className="flex flex-row items-center gap-8 text-gray-900">
                         {isUnlimited ? (
                             <div className="flex items-center gap-[10px] shadow-md p-2 rounded-lg border-2">
                                 <IoInfinite className="w-6 h-6 text-blue-500"/>
@@ -307,14 +308,14 @@ const ParticipantUpdateEvent = (dataEvent) => {
                                 type="number"
                                 id="maxParticipants"
                                 name="maxParticipants"
-                                className="relative w-[600px] shadow-md leading-[24px] bg-transparent outline-none border border-gray-300 rounded p-2 text-gray-900"
+                                className="relative w-[calc(50%-10px)] shadow-md leading-[24px] bg-transparent outline-none border border-gray-300 rounded p-2 text-gray-900"
                                 value={event.maxParticipants}
                                 onChange={handleInputChange}
                                 placeholder="Masukkan jumlah maksimal"
                             />
                         )}
                         <button
-                            className="flex flex-row items-center justify-start gap-[10px] shadow-md text-xs active:bg-gray-200 focus:bg-gray-200 p-2 rounded-lg"
+                            className="flex flex-row items-center  gap-[10px] shadow-md text-xs active:bg-gray-200 focus:bg-gray-200 p-2 rounded-lg"
                             onClick={() => setIsUnlimited(!isUnlimited)}
                         >
                             <div className="rounded-md bg-blue-300 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] p-2 ">
@@ -328,24 +329,25 @@ const ParticipantUpdateEvent = (dataEvent) => {
                 </div>
             </div>
 
-            <div className="flex flex-col items-start justify-start gap-4 my-4">
+            <div className="flex flex-col items-start justify-between gap-4 my-4">
+                <div className="w-full flex flex-col  gap-4 my-4">
+                    <label className="relative leading-[24px] font-semibold inline-block " htmlFor="price">Harga</label>
 
-                <label className="relative leading-[24px] font-semibold inline-block " htmlFor="price">Harga</label>
-
-                <div className="relative -mt-4 text-sm leading-[20px] text-blue-500 italic text-opacity-50">
-                    Harga Perorangnya saja
-                </div>
-                <div className="flex items-center gap-[10px]">
-                    <input
-                        type="number"
-                        id="price"
-                        name="price"
-                        className="relative shadow-md leading-[24px] w-[600px] bg-transparent outline-none border border-gray-300 rounded p-2 text-gray-900"
-                        value={event.price}
-                        onChange={handleInputChange}
-                        placeholder="Masukkan harga"
-                    />
-                    <span className="text-green-500 font-medium text-lg">Rupiah</span>
+                    <div className="relative -mt-4 text-xs sm:text-sm leading-[20px] text-blue-500 italic text-opacity-50">
+                        Harga Perorangnya saja
+                    </div>
+                    <div className="flex flex-row items-center gap-8 text-gray-900">
+                        <input
+                            type="number"
+                            id="price"
+                            name="price"
+                            className="relative shadow-md leading-[24px] w-[calc(50%-10px)] bg-transparent outline-none border border-gray-300 rounded p-2 text-gray-900"
+                            value={event.price}
+                            onChange={handleInputChange}
+                            placeholder="Masukkan harga"
+                        />
+                        <span className="text-green-500 font-medium text-lg">Rupiah</span>
+                    </div>
                 </div>
             </div>
 
@@ -353,7 +355,7 @@ const ParticipantUpdateEvent = (dataEvent) => {
                 <label className="relative leading-[24px] font-semibold inline-block ">
                     Ubah Pembayaran Partisipan
                 </label>
-                <div className="text-sm -mt-4 leading-[20px] text-blue-500 italic text-opacity-50">
+                <div className="text-xs sm:text-sm -mt-4 leading-[20px] text-blue-500 italic text-opacity-50">
                     Atur Sendiri Mempengaruhi Kepercayaan Participant
                 </div>
                 <div className="grid grid-cols-2 w-full gap-8 text-gray-900">
@@ -390,7 +392,7 @@ const ParticipantUpdateEvent = (dataEvent) => {
                     {selectedFiles.map((file, index) => (
                         <li
                             key={index}
-                            className="flex items-center space-x-2 transition duration-300 ease-in-out transform hover:scale-105"
+                            className="flex items-center space-x-0  sm:space-x-2 transition duration-300 ease-in-out transform hover:scale-105"
                             draggable
                             onDragStart={(e) => handleDragStart(e, index)}
                             onDragOver={handleDragOver}
@@ -399,14 +401,14 @@ const ParticipantUpdateEvent = (dataEvent) => {
                             <div className="text-gray-600 font-semibold">{index + 1}.</div>
                             <div className="flex-1">
                                 <article
-                                    className="flex items-center space-x-2 py-2 px-4 justify-between rounded-md bg-blue-100">
-                                    <div className="flex items-center gap-4 space-x-2">
+                                    className="flex items-center space-x-0 sm:space-x-2 py-2 px-4 justify-between rounded-md bg-blue-100">
+                                    <div className="flex items-center gap-4 space-x-0 sm:space-x-2">
                                         <img
                                             src={file.url || URL.createObjectURL(file)}
                                             alt={`Preview-${index}`}
                                             className="w-16 h-16 object-cover rounded-md"
                                         />
-                                        <h1 className="flex-1 text-blue-500 font-semibold text-sm">{file.fileName || `Gambar Anda`}</h1>
+                                        <h1 className="flex-1 text-blue-500 max-w-fit font-semibold text-sm text-ellipsis overflow-hidden">{file.fileName || `Gambar Anda`}</h1>
                                     </div>
                                     <button
                                         className="delete focus:outline-none hover:bg-blue-300 p-1 rounded-md text-blue-800"
@@ -420,9 +422,9 @@ const ParticipantUpdateEvent = (dataEvent) => {
                     ))}
                 </ul>
                 <header
-                    className="border-dashed w-full h-[400px] rounded-lg border-2 border-gray-400 py-8 flex mx-auto flex-col justify-center items-center mt-4">
-                    <p className="mb-3 font-semibold text-gray-900 flex flex-wrap justify-center">
-                        <span>Taruh dan Jatuhkan Gambar dimana saja atau</span>
+                    className="border-dashed w-full  h-[400px] rounded-lg border-2 border-gray-400 py-8 flex mx-auto flex-col justify-center items-center mt-4">
+                    <p className="mb-3 font-semibold opacity-70 text-gray-900 flex flex-wrap justify-center">
+                        <span className="text-center text-xs sm:text-base">Taruh dan Jatuhkan Gambar dimana saja atau</span>
                     </p>
                     <input
                         id="hidden-input"
@@ -434,7 +436,7 @@ const ParticipantUpdateEvent = (dataEvent) => {
 
                     <Button
                         id="button"
-                        className="mt-2 rounded-lg font-semibold p-4 bg-blue-400 hover:bg-blue-300 focus:shadow-outline"
+                        className="mt-2 rounded-lg opacity-70 font-semibold text-xs sm:text-base p-4 bg-blue-400 hover:bg-blue-300 focus:shadow-outline"
                         onClick={() => document.getElementById('hidden-input').click()}
                     >
                         Upload a file
@@ -444,9 +446,9 @@ const ParticipantUpdateEvent = (dataEvent) => {
             <div className="flex justify-center">
                 <Button
                     onClick={handleUpdate}
-                    className="bg-blue-500 w-1/2 justify-center text-white font-poppins px-4 py-2 rounded hover:bg-blue-600"
-                >
-                    Update Event <MdArrowForward className="inline-block ml-2"/>
+                    label={"Update Event"}
+                    className="bg-blue-500 w-1/2 justify-center text-xs sm:text-base text-white font-poppins px-4 py-2 rounded hover:bg-blue-600">
+                     <MdArrowForward className="inline-block sm:ml-2"/>
                 </Button>
             </div>
         </div>

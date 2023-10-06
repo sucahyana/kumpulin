@@ -35,7 +35,7 @@ const Event = () => {
         <EventDetail Content={<EventTabComponent eventData={eventData} />} eventData={eventData}>
             {loading && <Loader />}
             {error && (
-                <div className="flex flex-col items-center justify-center h-screen">
+                <div className="flex flex-col items-center justify-center ">
                     <p>Error fetching event data: {error.message}</p>
                     <Button label="Retry" onClick={fetchEvent} />
                 </div>

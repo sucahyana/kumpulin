@@ -22,7 +22,7 @@ const EventTabComponent = ({ eventData }) => {
 
     return (
         <div>
-            <div className="grid grid-cols-3  gap-2 md:gap-5 mb-8">
+            <div className="grid grid-cols-3 gap-2 md:gap-5 mb-8">
                 {tabs.map(({ name }) => (
                     <Button
                         key={name}
@@ -35,7 +35,7 @@ const EventTabComponent = ({ eventData }) => {
                 ))}
             </div>
             <div className="flex justify-center mt-6">
-                <div className="shadow-xl font-light rounded-xl text-gray-500 bg-white w-full max-w-screen-xl">
+                <div className="shadow-lg font-light rounded-xl text-gray-500 bg-white w-full max-w-full">
                     {renderContent()}
                 </div>
             </div>

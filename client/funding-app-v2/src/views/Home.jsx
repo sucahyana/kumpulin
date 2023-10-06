@@ -50,7 +50,7 @@ const Home = () => {
                     <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">
                         Ini Funding Kamu Loh!
                     </h2>
-                    <div className="mt-4 flex flex-wrap gap-y-4 justify-around xl:flex-grow">
+                    <div className="mt-4 flex flex-wrap gap-y-4 justify-around">
                         {userEvents?.length > 0 ? (
                             userEvents?.map((event) => (
                                 <CardFeed key={event.id} event={event} userData={userData} />

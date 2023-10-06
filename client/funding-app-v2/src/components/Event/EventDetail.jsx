@@ -113,21 +113,21 @@ const EventDetail = ({Content, eventData, children}) => {
     const EventDetail = () => (
         <div className="flex-col gap-8 justify-center my-4 w-full">
             <div
-                className="relative rounded-lg bg-white p-4 md:p-8 shadow-2xl hover:shadow-4xl transition-shadow duration-300">
+                className="relative rounded-lg bg-white p-4 sm:p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300">
                 <div className="space-y-1">
                     {title ? (
-                        <h2 className="text-lg md:text-2xl font-extrabold text-gray-800">{title}</h2>
+                        <h2 className="text-lg sm:text-2xl font-extrabold text-gray-800">{title}</h2>
                     ) : (
                         <Skeleton shape="text" width="80%"/>
                     )}
                     {category ? (
-                        <p className="text-base md:text-xl font-semibold text-blue-600">{category}</p>
+                        <p className="text-base sm:text-xl font-semibold text-blue-600">{category}</p>
                     ) : (
                         <Skeleton shape="text" width="60%"/>
                     )}
                 </div>
                 {amount_person ? (
-                    <div className="text-lg md:text-2xl text-right text-green-600">
+                    <div className="text-lg sm:text-2xl text-right text-green-600">
                         <span className="font-bold">{formatCurrency(amount_person)}</span>
                         <span className="font-medium text-blue-500"> Rupiah</span>
                     </div>
@@ -141,32 +141,35 @@ const EventDetail = ({Content, eventData, children}) => {
     const EventFooter = () => (
             <div className="mx-auto w-full max-w-[1150px]">
                 <div
-                    className="rounded-lg bg-white p-4 md:p-6 gap-4 flex flex-col md:flex-row items-start justify-between space-x-0 md:space-x-8 text-black shadow-lg  transition-shadow duration-300">
+                    className="rounded-lg bg-white p-4 lg:p-6 gap-4 flex flex-col sm:flex-row items-start justify-between space-x-0  lg:space-x-8 text-gray-800 shadow-lg  transition-shadow duration-300">
                     <div className="flex items-center space-x-4">
                         <Link to={currentUser && id_user === currentUser.id ? '/profile' : `/profile/${id_user}`}>
                             <img
-                                className="rounded-full w-10 h-10 md:w-16 md:h-16 object-cover flex text-center hover:scale-105 shadow-lg border-2 border-blue-200"
+                                className="rounded-full w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 object-cover flex text-center hover:scale-105 shadow-lg border-2 border-blue-200"
                                 alt="Profile Picture"
                                 src={user.profile_image || 'https://source.unsplash.com/random/60x60'}
                             />
                         </Link>
                         <div className="flex flex-col">
                             {user.name ? (
-                                <span className="text-base md:text-xl font-semibold">{user.name}</span>
+                                <span
+                                    className="text-left text-base sm:text-lg whitespace-pre-line leading-5 lg:text-xl font-semibold sm:font-medium lg:font-semibold">{user.name}</span>
                             ) : (
-                                <Skeleton shape="text" width="80%" />
+                                <Skeleton shape="text" width="80%"/>
                             )}
                             <span className="text-xs md:text-sm text-blue-500 font-semibold">Publication</span>
                         </div>
                     </div>
 
-                    <div className="flex flex-col bg-blue-100 rounded-lg p-2 md:p-4 space-y-2 text-sm md:text-lg text-blue-900 font-semibold">
+                    <div
+                        className="flex flex-col bg-blue-100 rounded-lg p-2 lg:p-4 space-y-2 text-sm sm:text-base lg:text-lg text-blue-900 font-semibold">
                         {start_date && (
-                            <span>Acara Ditutup Pada {format(new Date(start_date), 'dd MMMM yyyy')}</span>
+                            <span
+                                className="text-center border-b-2 border-dashed border-white">Acara Ditutup Pada {format(new Date(start_date), 'dd MMMM yyyy')}</span>
                         )}
                         {end_date && (
                             <span
-                                className="text-xs md:text-base text-red-600">Harus Lunas Sebelum {format(new Date(end_date), 'dd MMMM yyyy')}</span>
+                                className="text-xs sm:text-sm text-center lg:text-base text-red-600">Harus Lunas Sebelum {format(new Date(end_date), 'dd MMMM yyyy')}</span>
                         )}
                     </div>
                 </div>
@@ -178,7 +181,7 @@ const EventDetail = ({Content, eventData, children}) => {
     const ShareButton = ({onClick}) => (
         <Button
             onClick={onClick}
-            className="p-2 w-full md:w-[calc(50%-2px)] flex justify-center mt-4 mb-4 shadow-lg rounded-lg font-poppins bg-blue-400 hover:bg-blue-500 hover:scale-105 text-white transition duration-300 ease-in-out"
+            className="p-2 w-full sm:w-[calc(50%-2px)] flex justify-center mt-4 mb-4 shadow-lg rounded-lg font-poppins bg-blue-400 hover:bg-blue-500 hover:scale-105 text-white transition duration-300 ease-in-out"
         >
             <FiShare size={24} className="mr-4 "/> <p className="text-sm whitespace-nowrap">Bagikan atau Invite</p>
         </Button>
@@ -236,9 +239,10 @@ const EventDetail = ({Content, eventData, children}) => {
     };
 
     return (
-        <div className="flex bg-gray-100 min-h-screen">
+        <div className="flex bg-gray-100 ">
             <div className="flex-grow flex flex-col">
-                <main className=" flex flex-col items-center mt-1 md:mt-4 mb-6 p-0 md:p-8 w-full max-w-[1150px] mx-auto">
+                <main
+                    className=" flex flex-col items-center mt-1 sm:mt-4 mb-6 p-0 md:p-8 w-full max-w-[1150px] mx-auto">
                     {loading ? (
                         <div className="p-fluid">
                             <div className="p-field">
@@ -252,7 +256,7 @@ const EventDetail = ({Content, eventData, children}) => {
                                 <Button
                                     onClick={handleEdit}
                                     label={'Ubah Sesuatu Didalam Acara'}
-                                    className="mt-2 md:mt-4 font-poppins bg-white text-blue-500 font-bold text-sm md:text-lg shadow-lg flex items-center justify-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
+                                    className="mt-2 md:mt-4 font-poppins bg-white text-blue-500 font-bold text-sm sm:text-base lg:text-lg shadow-lg flex items-center justify-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
                                 >
                                     <AiFillEdit size={20}/>
                                 </Button>
@@ -260,14 +264,17 @@ const EventDetail = ({Content, eventData, children}) => {
                             <EventDetail/>
                             <div className="justify-center my-4 w-full">{Content}</div>
                             <EventFooter/>
-                            {!isUserAlreadyJoined && (
-                                <Button
-                                    onClick={ModalJoin}
-                                    className="mt-4 font-poppins bg-white text-blue-500 font-bold text-lg shadow-2xl flex items-center justify-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition duration-300 ease-in-out"
-                                >
-                                    <TbSquareRoundedPlusFilled size={20}/> Gabung acara
-                                </Button>
-                            )}
+                            <section className="w-[calc(100%-100px)] flex flex-row gap-6">
+                                {!isUserAlreadyJoined && (
+                                    <Button
+                                        onClick={ModalJoin}
+                                        className="p-2 w-full sm:w-[calc(50%-2px)] flex justify-center mt-4 mb-4 shadow-lg rounded-lg font-poppins bg-blue-400 hover:bg-blue-500 hover:scale-105 text-white transition duration-300 ease-in-out"
+                                    >
+                                        <TbSquareRoundedPlusFilled size={24} className="mr-4 "/>  <p className="text-sm whitespace-nowrap">Gabung Acara</p>
+                                    </Button>
+                                )}
+                                <ShareButton onClick={() => setShowModal(true)}/>
+                            </section>
                             <Modal
                                 isOpen={isJoinModalOpen}
                                 onRequestClose={closeJoinModal}
@@ -310,7 +317,7 @@ const EventDetail = ({Content, eventData, children}) => {
                                     </div>
                                 </div>
                             </Modal>
-                            <ShareButton onClick={() => setShowModal(true)}/>
+
                             {showModal && (
                                 <ShareModal
                                     eventCode={eventCode}

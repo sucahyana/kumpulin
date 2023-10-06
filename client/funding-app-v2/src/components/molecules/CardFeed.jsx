@@ -36,7 +36,7 @@ const CardFeed = ({event, userData}) => {
 
     return (
         <div
-            className="flex flex-col justify-around max-w-full lg:w-[calc(50%-8px)] xl:w-[calc(33%-8px)]  sm:mx-8 lg:mx-0 w-screen md:w-fit bg-white shadow-md rounded-lg p-6 transform transition-transform duration-500 ease-in-out hover:shadow-xl hover:-translate-y-1">
+            className="flex flex-col justify-between max-w-full  sm:w-[calc(50%-8px)] lg:w-[calc(33%-8px)] bg-white shadow-md rounded-lg p-6 transform transition-transform duration-500 ease-in-out hover:shadow-xl hover:-translate-y-1">
             <section className="flex flex-col justify-between">
                 <div className="flex flex-row justify-between items-center space-x-4">
                     <EventImage eventMedia={event_media[0]} title={title}/>

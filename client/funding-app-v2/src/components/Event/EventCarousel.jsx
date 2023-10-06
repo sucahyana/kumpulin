@@ -53,7 +53,7 @@ const EventCarousel = ({ images }) => {
     };
 
     return (
-        <div className="flex flex-col md:flex-row items-center justify-center bg-white gap-0 p-0 md:gap-8 w-full md:p-5 shadow-lg rounded-lg">
+        <div className="flex flex-col sm:flex-row items-center justify-center bg-white gap-0 p-0 sm:gap-2 sm:p-2 lg:p-5 lg:gap-8 w-full  shadow-lg rounded-lg">
             <MainImage />
             {images.length > 1 && <Thumbnails />}
         </div>
@@ -61,7 +61,7 @@ const EventCarousel = ({ images }) => {
 
     function Thumbnails() {
         return (
-            <div className={`flex flex-row p-1 md:flex-col items-center justify-center gap-4 md:gap-4 w-full md:w-[230px] ${images.length > 2 ? 'mb-2' : ''} overflow-x-auto whitespace-nowrap md:whitespace-normal scrollbar-hide`}>
+            <div className={`flex flex-row p-1 sm:flex-col items-center justify-center gap-2 w-full md:w-[230px] ${images.length > 2 ? 'mb-2' : ''} overflow-x-auto whitespace-nowrap md:whitespace-normal scrollbar-hide`}>
                 {images.length > 2 && <ArrowButton direction="up" onClick={handlePrev} />}
                 {getThumbnails().map((image, index) => (
                     <Thumbnail image={image} index={index} key={index} />
@@ -75,7 +75,7 @@ const EventCarousel = ({ images }) => {
         return (
             <button
                 onClick={onClick}
-                className="-mx-2 hidden md:flex shadow-lg h-full w-6 md:h-8 md:w-full hover:scale-105 hover:bg-blue-300 cursor-pointer rounded bg-gray-200 items-center justify-center"
+                className="-mx-2 hidden md:flex shadow-lg h-full w-6 md:h-8 sm:w-1/2 lg:w-full hover:scale-105 hover:bg-blue-300 cursor-pointer rounded bg-gray-200 items-center justify-center"
             >
                 {direction === 'up' ? (
                     <IoIosArrowUp className="text-2xl" />
@@ -95,7 +95,7 @@ const EventCarousel = ({ images }) => {
         return (
             <button
                 onClick={() => handleImageClick(thumbnailIndex)}
-                className={`h-20 w-[90px] md:h-60 md:w-60 bg-contain  rounded cursor-pointer transform hover:scale-105 transition-transform duration-300 ${currentIndex === thumbnailIndex ? 'ring md:ring-4 ring-blue-500' : 'opacity-80 hover:opacity-100'}`}
+                className={`h-20 w-[90px] sm:w-40 sm:h-40 lg:h-60 lg:w-60 bg-cover  rounded cursor-pointer transform hover:scale-105 transition-transform duration-300 ${currentIndex === thumbnailIndex ? 'ring sm:ring-2 lg:ring-4 ring-blue-500' : 'opacity-80 hover:opacity-100'}`}
             >
                 <img className="w-full  max-h-[calc(100%-2px)] border h-full md:h-full md:w-full rounded bg-cover transition duration-300 ease-in-out" alt={`Thumbnail ${index + 1}`} src={image} />
             </button>
@@ -104,9 +104,9 @@ const EventCarousel = ({ images }) => {
 
     function MainImage() {
         return (
-            <div className="relative rounded-lg rounded-b-none bg-none w-full md:w-[695px] md:h-[705px] p-2">
+            <div className="relative rounded-lg rounded-b-none bg-none w-[calc(100%-8px)] sm:w-[400px] sm:h-[505px] lg:w-[695px] lg:h-[705px] p-2">
                 {mainImage ? (
-                    <Image className="relative rounded-lg w-full h-[40vh]  md:w-[695px] md:h-[705px]"
+                    <Image className="relative rounded-lg w-[calc(100%-8px)] h-[40vh] sm:w-[400px] sm:h-[505px] lg:w-[695px] lg:h-[705px]"
                            alt="Main Carousel"
                            preview
                            src={mainImage}

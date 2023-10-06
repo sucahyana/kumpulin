@@ -135,7 +135,7 @@ const ParticipantEvent = ({eventData}) => {
                         sortable
                         header="No"
                         body={(rowData, {rowIndex}) => rowIndex + 1}
-                        className="p-2 hidden md:table-cell"
+                        className="p-2 hidden lg:table-cell"
                     ></Column>
                     <Column
                         field="created_at"
@@ -248,7 +248,7 @@ const ParticipantEvent = ({eventData}) => {
                 ></Column>
                 <Column
                     header="Info"
-                    className="hidden md:table-cell"
+                    className="hidden lg:table-cell"
                     body={(rowData) => {
                         const percentagePaid = (rowData.payment_amount / eventData.amount_person) * 100;
                         return (
