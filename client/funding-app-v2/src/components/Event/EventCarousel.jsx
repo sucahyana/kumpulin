@@ -75,7 +75,7 @@ const EventCarousel = ({ images }) => {
         return (
             <button
                 onClick={onClick}
-                className="-mx-2 hidden md:flex shadow-lg h-full w-6 md:h-8 sm:w-1/2 lg:w-full hover:scale-105 hover:bg-blue-300 cursor-pointer rounded bg-gray-200 items-center justify-center"
+                className="-mx-2 hidden md:flex shadow-lg h-full w-6 md:h-8 sm:w-[calc(100%-2px)] lg:w-full hover:scale-105 hover:bg-blue-300 cursor-pointer rounded-lg bg-gray-200 items-center justify-center"
             >
                 {direction === 'up' ? (
                     <IoIosArrowUp className="text-2xl" />
@@ -95,23 +95,23 @@ const EventCarousel = ({ images }) => {
         return (
             <button
                 onClick={() => handleImageClick(thumbnailIndex)}
-                className={`h-20 w-[90px] sm:w-40 sm:h-40 lg:h-60 lg:w-60 bg-cover  rounded cursor-pointer transform hover:scale-105 transition-transform duration-300 ${currentIndex === thumbnailIndex ? 'ring sm:ring-2 lg:ring-4 ring-blue-500' : 'opacity-80 hover:opacity-100'}`}
+                className={`h-20 w-[90px] sm:w-full sm:h-40  lg:w-[calc(100%-20px)] xl:w-full lg:h-40 xl:h-48 bg-cover  rounded-lg cursor-pointer transform hover:scale-105 transition-transform duration-300 ${currentIndex === thumbnailIndex ? 'ring sm:ring-2 lg:ring-4 ring-blue-500' : 'opacity-80 hover:opacity-100'}`}
             >
-                <img className="w-full  max-h-[calc(100%-2px)] border h-full md:h-full md:w-full rounded bg-cover transition duration-300 ease-in-out" alt={`Thumbnail ${index + 1}`} src={image} />
+                <img className="w-full  max-h-[calc(100%-2px)] border h-full md:h-full md:w-full rounded-lg bg-cover transition duration-300 ease-in-out" alt={`Thumbnail ${index + 1}`} src={image} />
             </button>
         );
     }
 
     function MainImage() {
         return (
-            <div className="relative rounded-lg rounded-b-none bg-none w-[calc(100%-8px)] sm:w-[400px] sm:h-[505px] lg:w-[695px] lg:h-[705px] p-2">
+            <div className="relative rounded-lg rounded-b-none md:rounded-b-lg justify-center flex bg-none md:shadow-lg w-[calc(100%-8px)] h-[40vh] sm:w-[calc(200%-8px)] sm:h-[60vh] md:w-[calc(100%-8px)] md:h-[60vh] lg:w-[calc(90%-8px)] lg:h-[calc(70vh-20px)] 2xl:w-[calc(70%-8px)] xl:h-[70vh]">
                 {mainImage ? (
-                    <Image className="relative rounded-lg w-[calc(100%-8px)] h-[40vh] sm:w-[400px] sm:h-[505px] lg:w-[695px] lg:h-[705px]"
+                    <Image className="relative rounded-lg b-cover flex w-full h-full"
                            alt="Main Carousel"
                            preview
                            src={mainImage}
                            pt={{
-                               image: {className: 'h-full w-full rounded-lg bg-cover transition duration-300 ease-in-out' }
+                               image: {className: 'h-full w-full rounded-lg transition duration-300 ease-in-out' }
                            }}
                     />
                 ) : (
