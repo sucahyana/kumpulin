@@ -49,8 +49,8 @@ const EventCardProfile = ({ event, userData }) => {
     }
 
     return (
-        <div className="relative rounded-xl bg-white w-full md:w-[540px] lg:w-[840px] flex flex-col md:flex-row items-center md:items-start justify-start text-left text-lg text-black shadow-xl mb-10 p-4">
-            <div className="w-full md:w-[440px] h-[220px] md:h-full cursor-pointer hover:scale-105 delay-100 transition-all overflow-hidden rounded-lg shadow-lg">
+        <div className="relative rounded-xl bg-white w-full  xl:w-[840px] flex flex-col xl:flex-row items-center xl:items-start justify-start text-left text-lg text-black shadow-xl mb-10 p-4">
+            <div className="w-full xl:w-[440px] h-[220px] xl:h-full cursor-pointer hover:scale-105 delay-100 transition-all overflow-hidden rounded-lg shadow-lg">
                 <div
                     className="w-full h-full bg-cover bg-center rounded-lg shadow-inner"
                     style={{

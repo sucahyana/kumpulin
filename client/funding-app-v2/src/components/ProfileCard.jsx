@@ -64,8 +64,8 @@ const ProfileCard = ({ user }) => {
                             }}
                         />
                         <div className="py-2 sm:py-4 lg:py-8 xl:py-10 text-gray-700">
-                            <h1 className="font-semibold text-xl sm:text-3xl mb-0 sm:mb-2 text-center sm:text-left">{user.name || 'Nama Pengguna'}</h1>
-                            <div className="text-sm sm:text-lg font-medium text-center sm:text-left text-gray-600">
+                            <h1 className="font-semibold text-xl sm:text-2xl lg:text-3xl mb-0 sm:mb-2 text-center sm:text-left">{user.name || 'Nama Pengguna'}</h1>
+                            <div className="text-sm sm:text-base lg:text-lg font-medium text-center sm:text-left text-gray-600">
                                 {user.bio || 'Aku adalah Pengguna baru Aplikasi Kumpulin'}
                             </div>
                         </div>
