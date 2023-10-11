@@ -47,7 +47,7 @@ const Home = () => {
             <div className="flex flex-col space-y-6 sm:space-y-16">
                 {carousel}
                 <section>
-                    <h2 className="text-xl sm:text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">
+                    <h2 className="text-xl p-2 sm:text-2xl font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300">
                         Ini Funding Kamu Loh!
                     </h2>
                     <div className="mt-4 flex flex-wrap gap-y-4 justify-around">
@@ -57,7 +57,7 @@ const Home = () => {
                             ))
                         ) : (
                             <div className="flex min-h-full p-6 sm:p-16 max-w-2/3 bg-white justify-center items-center rounded-lg shadow-lg">
-                                <h1 className="animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-5 text-base sm:text-2xl text-blue-500 font-bold">
+                                <h1 className="animate-typing p-2   overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-5 text-base sm:text-2xl text-blue-500 font-bold">
                                     Kamu Belum ada Funding :(
                                 </h1>
                             </div>
