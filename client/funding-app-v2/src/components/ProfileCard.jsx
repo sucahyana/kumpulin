@@ -39,19 +39,22 @@ const ProfileCard = ({ user }) => {
     return (
         <div className="leading-tight bg-gray-lighter justify-center items-center">
             <div className="w-full mb-8 mx-auto bg-white rounded-lg overflow-hidden shadow-lg">
-                <div className="w-[100%] h-[280px] overflow-hidden shadow-inner relative">
+                <div className="flex sm:h-60 lg:h-72 xl:h-80 overflow-hidden shadow-inner relative">
                     <Image
                         src={coverImage}
                         alt={`Cover Profile ${user.name}`}
-                        className="h-[280px] object-cover rounded-t-lg transition-transform duration-300 hover:scale-105 hid"
+                        className=" h-full bg-cover rounded-t-lg transition-transform duration-300 hover:scale-105 "
                         preview
                         crossOrigin={"anonymous"}
+                        pt={{
+                            image: { className: 'w-screen h-full' }
+                        }}
                     />
                 </div>
                 <div className="border-b px-8">
                     <div className="text-center sm:text-left sm:flex mb-4 ">
                         <Image
-                            className="h-40 w-40 rounded-full border-4 border-blue-300 -mt-16 mr-4 transition-transform duration-300 hover:scale-105"
+                            className="h-28 w-28 sm:h-32 sm:w-32 lg:h-36 lg:w-36 xl:h-40 xl:w-40  rounded-full border-4 border-blue-300 -mt-16 sm:-mt-20 mr-4 transition-transform duration-300 hover:scale-105"
                             src={profileImage}
                             alt={`Photo Profile ${user.name}`}
                             preview
@@ -60,9 +63,9 @@ const ProfileCard = ({ user }) => {
                                 image: { className: 'rounded-full w-full h-full object-cover' }
                             }}
                         />
-                        <div className="py-12 text-gray-700">
-                            <h1 className="font-semibold text-3xl mb-2 text-center sm:text-left">{user.name || 'Nama Pengguna'}</h1>
-                            <div className="text-lg font-light text-center sm:text-left text-gray-600">
+                        <div className="py-2 sm:py-4 lg:py-8 xl:py-10 text-gray-700">
+                            <h1 className="font-semibold text-xl sm:text-3xl mb-0 sm:mb-2 text-center sm:text-left">{user.name || 'Nama Pengguna'}</h1>
+                            <div className="text-sm sm:text-lg font-medium text-center sm:text-left text-gray-600">
                                 {user.bio || 'Aku adalah Pengguna baru Aplikasi Kumpulin'}
                             </div>
                         </div>
