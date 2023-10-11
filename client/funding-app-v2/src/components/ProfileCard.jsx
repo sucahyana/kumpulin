@@ -38,7 +38,7 @@ const ProfileCard = ({ user }) => {
 
     return (
         <div className="leading-tight bg-gray-lighter justify-center items-center">
-            <div className="w-full mb-8 mx-auto bg-white rounded-lg overflow-hidden shadow-lg">
+            <div className="w-full mb-8 mx-auto bg-none sm:bg-white rounded-none sm:rounded-lg overflow-hidden shadow-none sm:shadow-lg">
                 <div className="flex sm:h-60 lg:h-72 xl:h-80 overflow-hidden shadow-inner relative">
                     <Image
                         src={coverImage}
@@ -54,7 +54,7 @@ const ProfileCard = ({ user }) => {
                 <div className="border-b px-8">
                     <div className="text-center sm:text-left sm:flex mb-4 ">
                         <Image
-                            className="h-28 w-28 sm:h-32 sm:w-32 lg:h-36 lg:w-36 xl:h-40 xl:w-40  rounded-full border-4 border-blue-300 -mt-16 sm:-mt-20 mr-4 transition-transform duration-300 hover:scale-105"
+                            className="h-28 w-28 sm:h-32 sm:w-32 lg:h-36 lg:w-36 xl:h-40 xl:w-40  rounded-full border-2 sm:border-4 border-blue-300 -mt-16 sm:-mt-20 mr-4 transition-transform duration-300 hover:scale-105"
                             src={profileImage}
                             alt={`Photo Profile ${user.name}`}
                             preview

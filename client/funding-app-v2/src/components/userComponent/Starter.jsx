@@ -39,7 +39,7 @@ const Starter = ({Content}) => {
                     isSticky={isSticky}
                     showNavbar={showNavbar}
                 />
-                <main className="flex-grow p-4 md:p-8">
+                <main className="flex-grow p-0 sm:p-8">
                     {Content}
                 </main>
                 <RightNav/>
