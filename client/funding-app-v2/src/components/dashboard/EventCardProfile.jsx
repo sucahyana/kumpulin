@@ -68,7 +68,22 @@ const EventCardProfile = ({ event, userData }) => {
                     <div className="flex flex-col items-start justify-start gap-2 mb-4">
                         {renderThumbnailInfo()}
                     </div>
-                    <div className="flex items-center gap-5 text-info-500 mb-4">
+                    <section className="flex flex-col items-start p-2 justify-start gap-2 mt-6 border-dashed border-t-2 border-b-2 py-4 bg-white rounded-lg shadow-sm">
+                        <b className="relative text-lg font-semibold text-gray-800">
+                            {title}
+                        </b>
+                        <div className="relative p-2 text-xs font-light text-gray-600">
+                            {truncatedDescription}
+                        </div>
+                    </section>
+
+
+                    <section className="flex justify-end mt-4">
+                        <b className="relative text-lg font-medium text-green-700">
+                            {formatCurrency(amount_person)}
+                        </b>
+                    </section>
+                    <section className="flex items-center gap-5 text-info-500 mb-4">
                         <div className="flex flex-row items-center justify-start gap-4">
                             <img
                                 className="w-16 h-16 rounded-full border-2 border-gray-300"
@@ -77,24 +92,11 @@ const EventCardProfile = ({ event, userData }) => {
                                 loading="lazy"
                             />
                             <div className="flex flex-col">
-                                <span className="opacity-70 font-medium text-lg">Pembuat Acara</span>
-                                <div className="font-semibold text-gray-800 text-base">{user?.name || "Unknown"}</div>
+                                <div className="font-medium text-gray-800 text-base">{user?.name || "Unknown"}</div>
+                                <span className="opacity-70 font-medium text-base">Pembuat Acara</span>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex flex-col items-start p-2 justify-start gap-2 mt-6 border-dashed border-t-2 border-b-2 py-4 bg-white rounded-lg shadow-sm">
-                        <b className="relative text-xl font-semibold text-gray-800">
-                            {title}
-                        </b>
-                        <div className="relative p-2 text-sm font-light text-gray-600">
-                            {truncatedDescription}
-                        </div>
-                    </div>
-                    <div className="flex justify-end mt-4">
-                        <b className="relative text-lg font-medium text-green-700">
-                            {formatCurrency(amount_person)}
-                        </b>
-                    </div>
+                    </section>
                 </div>
                 <div className="self-end mt-4">
                     <CardFooterComponent handleCardClick={handleCardClick} participants={event_participant} />
