@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 
-import { notifySuccess, notifyError, notifyLoading } from '../../toast.jsx';
+import {notifySuccess, notifyError, notifyLoading} from '../../toast.jsx';
 import withUserData from '../../../utils/hoc/withUserData.jsx';
-import { toast } from "react-hot-toast";
-import { ConfirmDialog } from 'primereact/confirmdialog';
-import { ProgressSpinner } from "primereact/progressspinner";
+import {toast} from "react-hot-toast";
+import {ConfirmDialog} from 'primereact/confirmdialog';
+import {ProgressSpinner} from "primereact/progressspinner";
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import { RiAlarmWarningFill } from "react-icons/ri";
-import { GiConfirmed } from "react-icons/gi";
-import { useDispatch } from "react-redux";
-import { Skeleton } from "primereact/skeleton";
-import { InputText } from "primereact/inputtext";
-import { Password } from "primereact/password";
-import { Button } from "primereact/button";
+import {RiAlarmWarningFill} from "react-icons/ri";
+import {GiConfirmed} from "react-icons/gi";
+import {useDispatch} from "react-redux";
+import {Skeleton} from "primereact/skeleton";
+import {InputText} from "primereact/inputtext";
+import {Password} from "primereact/password";
+import {Button} from "primereact/button";
 import {setUser} from "../../../store/actions/user.js";
 import {changePassword} from "../../../services/apiService.jsx";
 
-const KeamananForm = ({ userData }) => {
+const KeamananForm = ({userData}) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
@@ -94,9 +94,8 @@ const KeamananForm = ({ userData }) => {
     };
 
 
-
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -144,65 +143,77 @@ const KeamananForm = ({ userData }) => {
                     <Skeleton shape="rectangle" size="15rem"/>
                 </div>
             ) : (
-                <form className="flex flex-col gap-6 text-gray-800 w-[665px]" onSubmit={handleFormSubmit}>
+                <form className="flex flex-col gap-2 md:gap-6 text-gray-800 w-full md:w-[665px]"
+                      onSubmit={handleFormSubmit}>
 
-                    <div className="flex flex-col gap-2 w-[300px]">
+                    <div className="flex flex-col gap-2 w-full">
                         <label htmlFor="oldPassword">
                             <span className="text-base font-medium text-blue-950">Password Lama</span>
                         </label>
-                        <Password
-                            id="oldPassword"
-                            name="oldPassword"
-                            value={formData.oldPassword}
-                            onChange={handleInputChange}
-                            className="border-2 border-gray-300 rounded p-2 bg-gray-50"
-                            toggleMask feedback={false}
-                        />
+                        <section className=" flex justify-content-center">
+                            <Password
+                                id="oldPassword"
+                                name="oldPassword"
+                                value={formData.oldPassword}
+                                onChange={handleInputChange}
+                                className="rounded"
+                                toggleMask
+                                feedback={false}
+                            />
+                        </section>
                     </div>
 
-                    <div className="flex flex-col gap-2 w-[300px]">
-                        <label htmlFor="newPassword">
-                            <span className="text-base font-medium text-blue-950">Password Baru</span>
-                        </label>
-                        <Password
-                            id="newPassword"
-                            name="newPassword"
-                            value={formData.newPassword}
-                            onChange={handleInputChange}
-                            className="border-2 border-gray-300 rounded p-2 bg-gray-50"
-                            toggleMask feedback={false}
-                        />
-                    </div>
+                    <section className="flex flex-col md:flex-row  flex-grow justify-between gap-2 md:gap-6" >
+                        <div className="flex flex-col gap-2">
+                            <label htmlFor="newPassword">
+                                <span className="text-base font-medium text-blue-950">Password Baru</span>
+                            </label>
+                            <section className=" flex justify-content-center">
+                                <Password
+                                    id="newPassword"
+                                    name="newPassword"
+                                    value={formData.newPassword}
+                                    onChange={handleInputChange}
+                                    className="rounded"
+                                    toggleMask
+                                    feedback={false}
+                                />
+                            </section>
+                        </div>
 
-                    <div className="flex flex-col gap-2 w-[300px]">
-                        <label htmlFor="confirmPassword">
-                            <span className="text-base font-medium text-blue-950">Konfirmasi Password Baru</span>
-                        </label>
-                        <Password
-                            id="confirmPassword"
-                            name="confirmPassword"
-                            value={formData.confirmPassword}
-                            onChange={handleInputChange}
-                            className="border-2 border-gray-300 rounded p-2 bg-gray-50"
-                            toggleMask feedback={false}
-                        />
-                    </div>
+                        <div className="flex flex-col gap-2">
+                            <label htmlFor="confirmPassword">
+                                <span className="text-base font-medium text-blue-950">Konfirmasi Password Baru</span>
+                            </label>
+                            <section className=" flex justify-content-center">
+                                <Password
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    value={formData.confirmPassword}
+                                    onChange={handleInputChange}
+                                    className="rounded"
+                                    toggleMask
+                                    feedback={false}
+                                />
+                            </section>
+                        </div>
+                    </section>
 
                     <div className="flex flex-row gap-6 justify-end text-gray-100 mt-8">
                         <Button
                             type="button"
-                            className="w-[200px] rounded-xl bg-blue-300 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2"
+                            className="w-full md:w-[200px] rounded-xl bg-blue-300 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2"
                             onClick={showCancelConfirm}
                         >
                             Batal
                         </Button>
                         <Button
                             type="button"
-                            className="w-[200px]  rounded-xl bg-blue-600 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2"
+                            className="w-full md:w-[200px] rounded-xl bg-blue-600 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2"
                             onClick={showSaveConfirm}
                         >
                             {loading ? (
-                                <ProgressSpinner style={{ width: '24px', height: '24px' }} strokeWidth="4"/>
+                                <ProgressSpinner style={{width: '24px', height: '24px'}} strokeWidth="4"/>
                             ) : "Simpan"}
                         </Button>
                     </div>

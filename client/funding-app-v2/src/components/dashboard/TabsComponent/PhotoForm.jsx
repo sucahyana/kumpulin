@@ -141,19 +141,19 @@ const PhotoForm = () => {
 
 
     return (
-        <div className="flex flex-col gap-12 ">
+        <div className="flex flex-col gap-2 md:gap-6 text-gray-800 w-full md:w-[665px]">
             <div className="flex gap-8 justify-center">
                 {tabOptions.flatMap(tab => (
-                    <button
+                    <Button
                         key={tab}
                         onClick={() => setActiveTab(tab)}
-                        className={`w-[200px] p-4 rounded-xl shadow-md flex items-center justify-center 
+                        className={`p-2 md:p-4 rounded-lg shadow-md flex items-center justify-center font-poppins  w-full
                             ${activeTab === tab ?
-                            'bg-blue-500 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)]  font-medium text-lg text-blue-50 border-[4px] border-solid border-blue-200' :
-                            'bg-blue-300 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)]  font-medium text-lg text-blue-50'}`}
+                            'bg-blue-500 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-lg text-blue-50 border-[4px] border-solid border-blue-200' :
+                            'bg-blue-300 shadow-[0px 1px 2px rgba(105, 81, 255, 0.05)] font-medium text-lg text-blue-50'}`}
                     >
                         {tab}
-                    </button>
+                    </Button>
                 ))}
             </div>
             <input
@@ -163,7 +163,7 @@ const PhotoForm = () => {
                 onChange={handleFileChange}
             />
             <div
-                className="rounded-xl bg-white box-border flex flex-col py-[25px] px-[111px] items-center justify-center text-center text-xs text-gray-800 font-medium border-[1px] border-dashed border-gray-300 cursor-pointer hover:shadow-lg active:scale-95 transition-all duration-300"
+                className="rounded-xl bg-white box-border flex flex-col p-12 items-center justify-center text-center text-xs text-gray-800 font-medium border-[1px] border-dashed border-gray-300 cursor-pointer hover:shadow-lg active:scale-95 transition-all duration-300"
                 onDragOver={handleDragOver}
                 onDrop={handleDrop}
                 onClick={() => document.getElementById('file-input').click()}
@@ -173,8 +173,8 @@ const PhotoForm = () => {
                         <div className="text-base font-medium text-blue-950">
                             {activeTab === 'photo' ? 'Silahkan Upload untuk Foto profile anda' : 'Silahkan Upload untuk Foto Cover anda'}
                         </div>
-                        <div className="bg-blue-50 rounded-full p-5 hover:bg-blue-100">
-                            <RiDragDropLine className="w-[100px] h-[100px] text-blue-800" />
+                        <div className="bg-blue-50  rounded-full p-5 hover:bg-blue-100">
+                            <RiDragDropLine className="w-[60px] h-[60px] md:w-[100px] md:h-[100px] text-blue-800" />
                         </div>
                         <div className="leading-[16px]">
                             <p>Drop your file here to upload</p>
@@ -199,7 +199,7 @@ const PhotoForm = () => {
             <div className="flex flex-row gap-6 justify-end text-gray-100 ">
                 <Button
                     type="button"
-                    className="w-[200px]  rounded-xl bg-blue-600 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2"
+                    className="w-full md:w-[200px] rounded-xl bg-blue-600 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2"
                     onClick={showSaveConfirm}
                 >
                     {loading ? <ProgressSpinner style={{ width: '24px', height: '24px' }} strokeWidth="4" /> : 'Simpan'}

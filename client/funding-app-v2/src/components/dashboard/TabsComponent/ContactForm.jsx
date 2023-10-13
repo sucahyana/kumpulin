@@ -253,14 +253,14 @@ const ContactForm = () => {
                 <div className="flex flex-row gap-6 justify-end text-gray-100 mt-8">
                     <Button
                         type="button"
-                        className=" rounded-xl bg-blue-300 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2"
+                        className="w-full md:w-[200px] rounded-xl bg-blue-300 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2"
                         onClick={showCancelConfirm}
                     >
                         Batal
                     </Button>
                     <Button
                         type="button"
-                        className=" rounded-xl bg-blue-600 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2"
+                        className=" w-full md:w-[200px] rounded-xl bg-blue-600 shadow-md py-3 px-6 flex flex-row items-center justify-center gap-2"
                         onClick={showSaveConfirm}
                     >
                         {loading ? (
