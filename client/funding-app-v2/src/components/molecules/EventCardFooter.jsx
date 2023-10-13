@@ -8,7 +8,7 @@ const ParticipantImages = ({ participants }) => {
     const additionalParticipants = totalParticipants - displayedParticipants;
 
     return (
-        <div className="flex flex-row items-center justify-start w-full md:w-auto mb-2 md:mb-0">
+        <div className="flex flex-row items-center justify-start w-full md:w-auto mb-2 md:mb-0 opacity-70 hover:opacity-100">
             {participants.slice(0, displayedParticipants).map((participant) => {
                 const profileImage = participant?.user?.profile_image || "https://picsum.photos/1000";
                 return (
