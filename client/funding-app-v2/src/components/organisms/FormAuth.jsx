@@ -6,7 +6,6 @@ import { fetchUserData, setAuth } from "../../store/actions/user.js";
 import ButtonSubmit from '../atoms/ButtonSubmit.jsx';
 import logo from '../../assets/images/logo.png';
 import { Link } from 'react-router-dom';
-import { toast } from "react-hot-toast";
 import { notifyError, notifySuccess, notifyLoading, stopLoading } from "../toast.jsx";
 
 const FormAuth = ({ fields, buttonName, headers, links }) => {
