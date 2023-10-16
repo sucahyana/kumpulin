@@ -1,81 +1,72 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { trim } from "lodash/string.js";
-import Footer from "./Footer.jsx";
+import { FaRegMoneyBill1 } from "react-icons/fa6";
+import { Button } from "primereact/button";
 
 const SearchEventCard = ({ event }) => {
-    if (!event) return null; // Return null if event is not provided
+    if (!event) return null;
 
     const navigate = useNavigate();
 
-    const truncatedDescription = event?.description?.length > 100 ? `${event.description.substring(0, 100)}...` : event?.description || "";
+    const truncatedDescription =
+        event?.description?.length > 100
+            ? `${event.description.substring(0, 100)}...`
+            : event?.description || "";
 
     const handleCardClick = () => {
         navigate(`/event/${event.code_event}`);
     };
 
-    const formatCurrency = (amount) => {
-        return new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
-        }).format(amount);
-    }
-
     return (
-        <div className="relative rounded-xl bg-white w-full  flex flex-col xl:flex-row items-center xl:items-start justify-start text-left text-lg text-black shadow-xl mb-10 p-4">
-            <div className="w-full xl:w-[440px] h-[220px] xl:h-full cursor-pointer hover:scale-105 delay-100 transition-all overflow-hidden rounded-lg shadow-lg">
-                <div
-                    className="w-full h-full bg-cover xl:bg-contain xl:bg-no-repeat 2xl:bg-cover bg-center rounded-lg shadow-inner"
-                    style={{
-                        backgroundImage: `url(${event?.event_media?.[0]?.media_url || "https://picsum.photos/900"})`,
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center",
-                    }}
-                    onClick={handleCardClick}
-                >
-                    {!event?.event_media?.[0]?.media_url && (
-                        <div className="animate-pulse w-full h-full bg-gray-300 rounded-lg"></div>
-                    )}
-                </div>
-            </div>
+        <div className="flex flex-col justify-start bg-white bg-opacity-40 md:justify-center relative w-full sm:max-w-[calc(50%-20px)] xl:max-w-[calc(33%-20px)] 2xl:max-w-[calc(25%-20px)] md:p-4 rounded-lg shadow hover:-translate-y-1 transition-all duration-300 border">
 
-            <div className="flex-1 flex flex-col p-4 md:p-8 gap-4 md:gap-6 justify-between bg-gray-50 rounded-lg">
-                <div>
-                    <div className="flex items-center gap-4 md:gap-5 text-blue-500 mb-2 md:mb-4">
-                        <div className="flex flex-row items-center justify-start gap-2 md:gap-4">
-                            <img
-                                className="w-12 h-12 md:w-16 md:h-16 rounded-full border-2 border-gray-300"
-                                alt="Event creator"
-                                src={event?.user?.profile_image || "https://picsum.photos/900"}
-                                loading="lazy"
-                            />
-                            <div className="flex flex-col">
-                                <span className="opacity-70 font-medium text-lg">Pembuat Acara</span>
-                                <div className="font-semibold text-gray-800 text-base">{event?.user?.name || "Unknown"}</div>
+            <div className="w-full h-full relative">
+                <div className="pb-24 rounded-lg h-full mb-6">
+                    <img
+                        src={event?.event_media?.[0]?.media_url || "https://www.pngall.com/wp-content/uploads/2016/05/Pizza-Download-PNG.png"}
+                        className="w-full h-64"
+                        alt="Event"
+                    />
+
+                    <div className="flex flex-col sm:flex-row justify-between p-4">
+                        <div className="flex gap-2">
+                            <p className="text-base font-medium">{event.title}</p>
+                        </div>
+                        <div className="">
+                            <FaRegMoneyBill1 className="text-green-500 text-2xl" />
+                            <p className="text-lg font-medium">
+                                {event.amount_person ? `RM ${event.amount_person}` : "RM 0.00"}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="absolute bottom-0 left-0 w-full">
+                    <div className="flex flex-col sm:flex-row justify-between">
+                        <div className="bg-blue-500 rounded-lg w-full p-4">
+                            <p className="text-white text-lg font-semibold">Yang sudah ikut</p>
+                            <div className="flex space-x-2">
+                                {event.event_participant.map((participant) => (
+                                    <img
+                                        src={participant.user.profile_image || "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"}
+                                        className="w-8 h-8 rounded-full border-2 border-white"
+                                        alt={participant.user.name}
+                                        key={participant.id}
+                                    />
+                                ))}
                             </div>
                         </div>
-                    </div>
-                    <div className="flex flex-col items-start p-2 justify-start gap-2 mt-2 md:mt-4 border-dashed border-t-2 border-b-2 py-2 md:py-4 bg-white rounded-lg shadow-sm">
-                        <b className="relative text-xl font-semibold text-gray-800">
-                            {event?.title}
-                        </b>
-                        <div className="relative text-sm p-2 font-light text-gray-600">
-                            {truncatedDescription}
+                        <div className="w-full h-fit flex justify-end">
+                            <Button
+                                className="bg-gradient-to-b from-blue-400 to-blue-500 text-white font-bold py-4 px-4 rounded-lg uppercase text-sm shadow-xl">
+                                Lihat
+                            </Button>
                         </div>
                     </div>
-                    <div className="flex justify-end mt-2 md:mt-4">
-                        <b className="relative text-lg font-medium text-green-700">
-                            {formatCurrency(Number(event?.amount_person) || 0)}
-                        </b>
-                    </div>
-                </div>
-                <div className="self-end mt-2 md:mt-4">
-                    <Footer handleCardClick={handleCardClick} participants={event?.event_participant || []} />
                 </div>
             </div>
+
         </div>
     );
 };

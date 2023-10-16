@@ -37,7 +37,7 @@ const ProfileGuest = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsUserAboutVisible(window.innerWidth > 768);
+            setIsUserAboutVisible(window.innerWidth >= 768);
         };
 
         window.addEventListener('resize', handleResize);

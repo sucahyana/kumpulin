@@ -47,7 +47,8 @@ const Search = () => {
                                             src={user.profile_image}
                                             alt={user.name}
                                             className="w-16 h-16 md:w-32 md:h-32 md:mx-auto md:mb-4 rounded-full transition-all duration-300 hover:scale-105 aspect-square shadow-md "/>
-                                        <span className="border-[0.5px] border-dashed border-gray-600 opacity-20"></span>
+                                        <span
+                                            className="border-[0.5px] border-dashed border-gray-600 opacity-20"></span>
                                         <div className="space-y-4 divide-y divide-gray-700 w-full ">
                                             <div className="flex flex-col">
                                                 <h2 className="text-base md:text-lg font-semibold text-blue-900">{user.name}</h2>
@@ -61,13 +62,16 @@ const Search = () => {
                     </section>
                 ) : null}
                 {results.events.length ? (
-                    <section className='flex flex-col gap-6'>
-                        <h2 className="text-2xl font-semibold text-blue-900 hover:text-gray-900 transition-all duration-300 mb-4">
+                    <section className='flex flex-col gap-6 mb-0 md:mb-6'>
+                        <h2 className="text-2xl font-semibold text-blue-900 hover:text-gray-900 transition-all duration-300 mb-2 md:mb-4">
                             Acara
                         </h2>
-                        {results.events.map(event => (
-                            <SearchEventCard key={event.id} event={event}/>
-                        ))}
+                        <div className="flex flex-wrap gap-2 md:gap-2 xl:gap-4">
+                            {results.events.map(event => (
+
+                                <SearchEventCard key={event.id} event={event}/>
+                            ))}
+                        </div>
                     </section>
                 ) : null}
             </div>

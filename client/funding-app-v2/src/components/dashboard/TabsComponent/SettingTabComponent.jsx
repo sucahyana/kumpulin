@@ -12,7 +12,7 @@ import PhotoForm from './PhotoForm.jsx';
 import { Button } from 'primereact/button';
 
 const TabButton = ({ tab, active, onClick }) => {
-    const isMobile = window.innerWidth < 768;
+    const isMobile = window.innerWidth <= 768;
 
     const iconMap = {
         Basic: <BsFillPersonFill className="text-gray-600" />,
