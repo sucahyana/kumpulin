@@ -44,7 +44,7 @@ const SearchEventCard = ({ event }) => {
 
                 <div className="absolute bottom-0 left-0 w-full">
                     <div className="flex flex-col sm:flex-row justify-between">
-                        <div className="bg-blue-500 rounded-lg w-full p-4">
+                        <div className="bg-blue-200 rounded-lg w-full p-4">
                             <p className="text-white text-lg font-semibold">Yang sudah ikut</p>
                             <div className="flex space-x-2">
                                 {event.event_participant.map((participant) => (
@@ -59,7 +59,7 @@ const SearchEventCard = ({ event }) => {
                         </div>
                         <div className="w-full h-fit flex justify-end">
                             <Button
-                                className="bg-gradient-to-b from-blue-400 to-blue-500 text-white font-bold py-4 px-4 rounded-lg uppercase text-sm shadow-xl">
+                                className="bg-gradient-to-b from-blue-100 to-blue-200 text-white font-bold py-4 px-4 rounded-lg uppercase text-sm shadow-xl">
                                 Lihat
                             </Button>
                         </div>
