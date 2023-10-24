@@ -15,7 +15,8 @@
         "laravel/telescope": "^4.16",
         "laravel/tinker": "^2.8",
         "owen-it/laravel-auditing": "^13.5",
-        "predis/predis": "^2.2"
+        "predis/predis": "^2.2",
+        "pugx/shortid-php": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

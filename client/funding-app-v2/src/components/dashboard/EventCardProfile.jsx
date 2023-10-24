@@ -6,6 +6,7 @@ import CardFooterComponent from "../molecules/EventCardFooter.jsx";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { trim } from "lodash/string.js";
+import {formatCurrency} from "../../utils/currencyFormatter.js";
 
 const EventCardProfile = ({ event, userData }) => {
     const {
@@ -39,14 +40,6 @@ const EventCardProfile = ({ event, userData }) => {
         );
     }
 
-    const formatCurrency = (amount) => {
-        return new Intl.NumberFormat('id-ID', {
-            style: 'currency',
-            currency: 'IDR',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0
-        }).format(amount);
-    }
 
     return (
         <div className="relative rounded-xl bg-white w-full  flex flex-col xl:flex-row items-center xl:items-start justify-start text-left text-lg text-black shadow-xl mb-10 p-4">
