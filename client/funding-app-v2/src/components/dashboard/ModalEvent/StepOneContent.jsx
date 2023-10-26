@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useImperativeHandle } from 'react';
 import { Button } from 'primereact/button';
-import {InputTextarea} from "primereact/inputtextarea";
-import {InputText} from "primereact/inputtext";
+import { InputTextarea } from 'primereact/inputtextarea';
+import { InputText } from 'primereact/inputtext';
 
 const StepOneContent = React.forwardRef(({ onNextStep, currentData }, ref) => {
     const [title, setTitle] = useState(currentData.title || '');
@@ -25,22 +25,40 @@ const StepOneContent = React.forwardRef(({ onNextStep, currentData }, ref) => {
     }));
 
     return (
-        <div className="flex flex-col gap-2 md:gap-4 text-gray-800">
+        <div className="flex flex-col gap-4 text-gray-800">
             {/* Kategori */}
-            <div className="flex flex-col ">
+            <div className="flex flex-col">
                 <label className="font-semibold text-base md:text-lg">Kategori</label>
                 <div className="text-sm text-blue-500 italic text-opacity-50">
                     Pilih kategori acara Anda.
                 </div>
-                <div className="flex gap-1 md:gap-2 flex-wrap ">
+                <div className="flex flex-wrap gap-2">
                     <div className="p-col">
-                        <Button label="Si Kece Pre-Order" className={`font-poppins text-sm shadow ${category === 'pre-order' ? 'p-button-info font-medium' : ' bg-blue-600 opacity-60'}`} onClick={() => handleCategoryClick('pre-order')} />
+                        <Button
+                            label="Si Kece Pre-Order"
+                            className={`font-poppins text-sm shadow p-button-info ${
+                                category === 'pre-order' ? 'font-medium' : 'bg-blue-600 opacity-60'
+                            }`}
+                            onClick={() => handleCategoryClick('pre-order')}
+                        />
                     </div>
                     <div className="p-col">
-                        <Button label="Arisan Canggih" className={`font-poppins text-sm shadow ${category === 'arisan' ? 'p-button-info font-medium' : 'bg-blue-600 opacity-60'}`} onClick={() => handleCategoryClick('arisan')} />
+                        <Button
+                            label="Arisan Canggih"
+                            className={`font-poppins text-sm shadow p-button-info ${
+                                category === 'arisan' ? 'font-medium' : 'bg-blue-600 opacity-60'
+                            }`}
+                            onClick={() => handleCategoryClick('arisan')}
+                        />
                     </div>
                     <div className="p-col">
-                        <Button label="Healing Lah" className={`font-poppins text-sm shadow ${category === 'travel' ? 'p-button-info font-medium' : 'bg-blue-600 opacity-60'}`} onClick={() => handleCategoryClick('travel')} />
+                        <Button
+                            label="Healing Lah"
+                            className={`font-poppins text-sm shadow p-button-info ${
+                                category === 'travel' ? 'font-medium' : 'bg-blue-600 opacity-60'
+                            }`}
+                            onClick={() => handleCategoryClick('travel')}
+                        />
                     </div>
                 </div>
             </div>
@@ -53,7 +71,12 @@ const StepOneContent = React.forwardRef(({ onNextStep, currentData }, ref) => {
                 <div className="text-sm text-blue-500 italic text-opacity-50">
                     Berikan nama untuk topik acara Anda.
                 </div>
-                <InputText id="namaTopik" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                <InputText
+                    id="namaTopik"
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                />
             </div>
 
             {/* Deskripsi */}
@@ -64,7 +87,13 @@ const StepOneContent = React.forwardRef(({ onNextStep, currentData }, ref) => {
                 <div className="text-sm text-blue-500 italic text-opacity-50">
                     Jelaskan detail acara Anda.
                 </div>
-                <InputTextarea id="deskripsi" value={description} onChange={(e) => setDescription(e.target.value)} rows={5} cols={30} />
+                <InputTextarea
+                    id="deskripsi"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    rows={5}
+                    cols={30}
+                />
             </div>
         </div>
     );
