@@ -32,9 +32,9 @@ use PUGX\Shortid\Shortid;
  *
  * @package App\Models
  */
-class EventHistory extends Model implements AuthenticatableContract, \OwenIt\Auditing\Contracts\Auditable
+class EventHistory extends Model implements AuthenticatableContract
 {
-    use \OwenIt\Auditing\Auditable, HasApiTokens, Notifiable, Authenticatable;
+    use HasApiTokens, Notifiable, Authenticatable;
 
     protected $table = 'event_history';
     public $incrementing = false;

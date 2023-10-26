@@ -1,5 +1,6 @@
 import React, { useState, forwardRef, useImperativeHandle } from 'react';
 import imageCompression from 'browser-image-compression';
+import {Button} from "primereact/button";
 
 
 const StepThreeContent = forwardRef((props, ref) => {
@@ -46,31 +47,32 @@ const StepThreeContent = forwardRef((props, ref) => {
 
 
     return (
-        <div className="overflow-y-auto max-h-96 p-4">
-            <header className="border-dashed w-[500px] h-[200px] border-2 border-gray-400 py-8 flex flex-col justify-center items-center">
-                <p className="mb-3 font-semibold text-gray-900 flex flex-wrap justify-center">
-                    <span>Drag and drop your</span>&nbsp;<span>files anywhere or</span>
+        <div className="overflow-y-auto max-h-96 p-2 md:p-4">
+            <header className="w-full h-[30vh] border-2 border-dashed border-gray-400 rounded p-8 flex flex-col justify-center items-center">
+                <p className="mb-3 font-semibold text-gray-900 text-center">
+                    <span>Seret dan letakkan </span>&nbsp;<span>file Anda di mana saja atau</span>
                 </p>
-                <input
-                    id="hidden-input"
-                    type="file"
-                    multiple
-                    className="hidden"
-                    onChange={handleFileInputChange}
-                />
-
-                <button
-                    id="button"
-                    className="mt-2 rounded-sm px-3 py-1 bg-gray-200 hover:bg-gray-300 focus:shadow-outline focus:outline-none"
-                    onClick={() => document.getElementById('hidden-input').click()}
-                >
-                    Upload a file
-                </button>
+                <label htmlFor="hidden-input" className="w-full">
+                    <input
+                        id="hidden-input"
+                        type="file"
+                        multiple
+                        className="hidden"
+                        onChange={handleFileInputChange}
+                    />
+                    <Button
+                        label={"From Storage"}
+                        id="button"
+                        className="mt-2 rounded w-full bg-blue-400 font-poppins"
+                        onClick={() => document.getElementById('hidden-input').click()}
+                    >
+                    </Button>
+                </label>
             </header>
-            <h1 className="pt-8 pb-3 font-semibold sm:text-lg text-gray-900">Uploaded Files</h1>
-            <ul id="gallery" className="flex flex-col space-y-2">
+            <ul id="gallery" className="flex flex-col mt-4 space-y-2">
                 {selectedFiles.map((file, index) => (
                     <li key={index} className="flex items-center space-x-2">
+
                         <div className="text-gray-600">{index + 1}.</div>
                         <div className="flex-1">
                             <article className="flex items-center space-x-2 py-2 px-4 rounded-md bg-gray-100">

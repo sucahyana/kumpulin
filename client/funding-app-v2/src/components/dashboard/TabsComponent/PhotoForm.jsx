@@ -68,8 +68,8 @@ const PhotoForm = () => {
             const croppedImageBase64 = await getCroppedImg(uploadedImage, croppedAreaPixels);
             setCroppedImage(croppedImageBase64);
             setCroppedAreaPixels(croppedAreaPixels);
+            window.location.reload();
         } catch (error) {
-            console.error('Error cropping image:', error);
             notifyError('Terjadi kesalahan saat memotong gambar');
         }
     }, [uploadedImage]);

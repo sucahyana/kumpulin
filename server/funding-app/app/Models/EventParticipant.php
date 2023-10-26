@@ -13,9 +13,9 @@ use PUGX\Shortid\Factory;
 use PUGX\Shortid\Shortid;
 
 
-class EventParticipant extends Model implements AuthenticatableContract, \OwenIt\Auditing\Contracts\Auditable
+class EventParticipant extends Model implements AuthenticatableContract
 {
-    use \OwenIt\Auditing\Auditable, HasApiTokens, Notifiable, Authenticatable;
+    use  HasApiTokens, Notifiable, Authenticatable;
 
     const STATUS_BERGABUNG = 'Bergabung';
     const STATUS_PENDING = 'Ingin ikut Acara';

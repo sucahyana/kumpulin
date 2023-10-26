@@ -57,19 +57,30 @@ const StepTwoContent = forwardRef((props, ref) => {
             </div>
 
             <div className="flex flex-row items-center justify-between gap-4">
-                <div className="flex flex-col">
-                    <label className="font-semibold text-base md:text-lg" htmlFor="startDate">
-                        Tanggal Mulai
+                <div className="flex flex-col items-start justify-start gap-[6px]">
+
+                    <label className="relative leading-[24px] font-semibold inline-block " htmlFor="startDate">Tanggal
+                        Mulai
                     </label>
-                    <Calendar id="startDate" value={startDate} onChange={(e) => setStartDate(e.target.value)}
-                              dateFormat="dd/mm/yy"/>
+
+                    <input
+                        type="date"
+                        id="startDate"
+                        className="relative leading-[24px] bg-transparent outline-none border border-gray-300 rounded p-2 text-gray-900"
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
+                    />
                 </div>
-                <div className="flex flex-col">
-                    <label className="font-semibold text-base md:text-lg" htmlFor="endDate">
-                        Tanggal Selesai
-                    </label>
-                    <Calendar id="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)}
-                              dateFormat="dd/mm/yy"/>
+                <div className="flex flex-col items-start justify-start gap-[6px]">
+                    <label className="relative leading-[24px] font-medium inline-block w-40" htmlFor="endDate">Tanggal
+                        Selesai</label>
+                    <input
+                        type="date"
+                        id="endDate"
+                        className="relative leading-[24px] bg-transparent outline-none border border-gray-300 rounded p-2 text-gray-900"
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                    />
                 </div>
             </div>
             <div className="-mt-4 text-sm text-blue-500 italic text-opacity-50">

@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use OwenIt\Auditing\Contracts\Auditable;
 use PUGX\Shortid\Factory;
 use PUGX\Shortid\Shortid;
 
@@ -34,9 +33,9 @@ use PUGX\Shortid\Shortid;
  *
  * @package App\Models
  */
-class EventMedia extends Model implements AuthenticatableContract,Auditable
+class EventMedia extends Model implements AuthenticatableContract
 {
-    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,Authenticatable;
+    use HasApiTokens,Notifiable,Authenticatable;
     use SoftDeletes;
 
     protected $table = 'event_media';

@@ -28,7 +28,6 @@ const eventReducer = (state = initialState, action) => {
             return { ...state, currentStep: state.currentStep + 1 };
 
         case ActionTypes.UPDATE_STEP_ONE:
-            console.log("Reducer received step one data:", action.payload);
             return {
                 ...state,
                 stepOne: {
@@ -38,7 +37,6 @@ const eventReducer = (state = initialState, action) => {
             };
 
         case ActionTypes.UPDATE_STEP_TWO:
-            console.log("Reducer received step two data:", action.payload);
             return {
                 ...state,
                 stepTwo: {
@@ -48,7 +46,6 @@ const eventReducer = (state = initialState, action) => {
             };
 
         case ActionTypes.UPDATE_STEP_THREE:
-            console.log("Reducer received step three data:", action.payload);
             return {
                 ...state,
                 stepThree: {
@@ -58,7 +55,6 @@ const eventReducer = (state = initialState, action) => {
             };
 
         case ActionTypes.CREATE_EVENT:
-            console.log("Reducer received events data:", action.payload);
             return {
                 ...state,
                 eventData: action.payload

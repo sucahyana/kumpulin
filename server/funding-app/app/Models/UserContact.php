@@ -3,11 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use OwenIt\Auditing\Contracts\Auditable;
 use PUGX\Shortid\Factory;
 use PUGX\Shortid\Shortid;
 
@@ -25,9 +23,9 @@ use PUGX\Shortid\Shortid;
  *
  * @package App\Models
  */
-class UserContact extends Model implements Auditable // Tambahkan ini
+class UserContact extends Model
 {
-    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable;
+    use HasApiTokens,Notifiable;
 
     protected $table = 'user_contact';
 

@@ -58,21 +58,16 @@ const ParticipantEvent = ({eventData}) => {
     };
 
     const handleApproveClick = (participant) => {
-        console.log('Approved participant:', participant);
         setApproveModalOpen(true);
         setSelectedParticipant(participant);
-        console.log(selectedParticipant.id);
     };
 
     const handleManageClick = (participant) => {
-        console.log('Managed participant:', participant);
         setManageModalOpen(true);
         setSelectedParticipant(participant);
-        console.log(selectedParticipant.id);
     };
 
     const handleDeleteClick = (participant) => {
-        console.log('Deleted participant:', participant);
         setDeleteModalOpen(false);
     };
 

@@ -34,7 +34,6 @@ const ManageModal = ({isOpen, onRequestClose, onManage, eventCode, participantId
                     notifyError("Terjadi kesalahan saat memproses data peserta.");
                 }
             } else {
-                console.log('participantId is null or undefined');
                 notifyError("ID Peserta tidak valid.");
             }
         } catch (error) {

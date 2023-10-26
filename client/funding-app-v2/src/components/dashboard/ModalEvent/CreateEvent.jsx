@@ -52,12 +52,10 @@ const CreateEvent = ({ isOpen, onRequestClose }) => {
 
                 try {
                     await createEvent(eventData);
-                    console.log('Event successfully created:', eventData);
                     setLoading(false);
                     notifySuccess('Event Berhasil dibuat');
                     notifySuccess('Commitment adalah Salah satu kunci SUKSES');
                 } catch (error) {
-                    console.log('Failed to create events:', error);
                     setLoading (false);
                     notifyError('Event gagal dibuat:', error);
                 }

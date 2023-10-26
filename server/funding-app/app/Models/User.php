@@ -10,23 +10,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use PUGX\Shortid\Factory;
 use PUGX\Shortid\Shortid;
 
-class User extends Model implements AuthenticatableContract,Auditable
+class User extends Model implements AuthenticatableContract
 {
-    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,Authenticatable,HasFactory,CanResetPassword;
+    use HasApiTokens,Notifiable,Authenticatable,HasFactory,CanResetPassword;
     use SoftDeletes;
 
     protected $table = 'users';
     public $incrementing = false;
     public $keyType = 'string';
-    protected $auditExclude = [
-        'published',
-    ];
 
     protected $casts = [
         'birth_date' => 'datetime'
