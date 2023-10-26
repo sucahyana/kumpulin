@@ -14,7 +14,7 @@ import {
 } from '../../../store/actions/eventAction.js';
 import { createEvent } from '../../../services/apiService.jsx';
 import { notifyError, notifySuccess } from '../../toast.jsx';
-import {Button} from "primereact/button";
+import { Button } from 'primereact/button';
 
 const CreateEvent = ({ isOpen, onRequestClose }) => {
     const [loading, setLoading] = useState(false);
@@ -55,11 +55,11 @@ const CreateEvent = ({ isOpen, onRequestClose }) => {
                     console.log('Event successfully created:', eventData);
                     setLoading(false);
                     notifySuccess('Event Berhasil dibuat');
-                    notifySuccess('Comitment adalah Salah satu kunci SUKSES');
+                    notifySuccess('Commitment adalah Salah satu kunci SUKSES');
                 } catch (error) {
                     console.log('Failed to create events:', error);
-                    setLoading(false);
-                    notifyError('Event gagal dibuat :', error);
+                    setLoading (false);
+                    notifyError('Event gagal dibuat:', error);
                 }
 
                 onRequestClose();
@@ -68,7 +68,6 @@ const CreateEvent = ({ isOpen, onRequestClose }) => {
 
             default:
                 break;
-                setLoading(false);
         }
     };
 
@@ -99,19 +98,20 @@ const CreateEvent = ({ isOpen, onRequestClose }) => {
             onRequestClose={onRequestClose}
             contentLabel="Create Event Modal"
             overlayClassName="fixed inset-0 bg-blue-200 bg-opacity-20 flex items-center justify-center z-50"
-            className="bg-white p-4 rounded-lg min-w-[320px] md:min-w-[544px] lg:min-w-[644px] shadow-2xl"
-            shouldCloseOnOverlayClick={false}
+            className="bg-white p-2 md:p-4 rounded-lg shadow flex flex-col w-screen sm:w-auto"
         >
-            <div className="rounded-xl bg-white p-6 flex flex-col items-center gap-4 text-gray-900">
+            <div className="flex-1 p-1 md:p-4">
                 <Button
-                    className="p-2 rounded-lg bg-gray-300 hover:bg-red-300 transition-colors ml-auto"
+                    className="p-2 rounded-lg bg-gray-200 border-none shadow hover:bg-red-300 transition-colors ml-auto"
                     onClick={onRequestClose}
                 >
                     <MdClose className="w-5 h-5" />
                 </Button>
+            </div>
+            <div className="p-2 md:p-4 flex flex-col items-center gap-2 md:gap-4 text-gray-900">
                 <div className="flex flex-col justify-center items-center text-center">
-                    <h1 className="text-2xl font-bold">Create Event</h1>
-                    <p className="text-lg font-medium text-gray-500">Start with Commitment!</p>
+                    <h1 className="text-lg md:text-2xl font-bold">Create Event</h1>
+                    <p className="text-base md:text-lg font-medium text-gray-500">Start with Commitment!</p>
                 </div>
                 <div className="w-full flex justify-between text-center text-base font-semibold">
                     {[1, 2, 3].map((stepNumber) => (

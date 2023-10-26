@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use OwenIt\Auditing\Contracts\Auditable;
+use PUGX\Shortid\Factory;
+use PUGX\Shortid\Shortid;
 
 /**
  * Class UserContact
@@ -25,7 +27,7 @@ use OwenIt\Auditing\Contracts\Auditable;
  */
 class UserContact extends Model implements Auditable // Tambahkan ini
 {
-    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,uuid;
+    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable;
 
     protected $table = 'user_contact';
 
@@ -38,5 +40,21 @@ class UserContact extends Model implements Auditable // Tambahkan ini
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $factory = new Factory();
+            $factory->setLength(16);
+            Shortid::setFactory($factory);
+            $model->{$model->getRouteKeyName()} = Shortid::generate();
+        });
     }
 }

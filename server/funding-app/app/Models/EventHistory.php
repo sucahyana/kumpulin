@@ -7,12 +7,13 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use PUGX\Shortid\Factory;
+use PUGX\Shortid\Shortid;
 
 
 /**
@@ -33,7 +34,7 @@ use Laravel\Sanctum\HasApiTokens;
  */
 class EventHistory extends Model implements AuthenticatableContract, \OwenIt\Auditing\Contracts\Auditable
 {
-    use \OwenIt\Auditing\Auditable, HasApiTokens, Notifiable, Uuid, Authenticatable;
+    use \OwenIt\Auditing\Auditable, HasApiTokens, Notifiable, Authenticatable;
 
     protected $table = 'event_history';
     public $incrementing = false;
@@ -54,5 +55,21 @@ class EventHistory extends Model implements AuthenticatableContract, \OwenIt\Aud
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user',);
+    }
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $factory = new Factory();
+            $factory->setLength(16);
+            Shortid::setFactory($factory);
+            $model->{$model->getRouteKeyName()} = Shortid::generate();
+        });
     }
 }

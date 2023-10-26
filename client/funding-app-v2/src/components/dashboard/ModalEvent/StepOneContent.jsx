@@ -1,4 +1,7 @@
 import React, { useEffect, useState, useImperativeHandle } from 'react';
+import { Button } from 'primereact/button';
+import {InputTextarea} from "primereact/inputtextarea";
+import {InputText} from "primereact/inputtext";
 
 const StepOneContent = React.forwardRef(({ onNextStep, currentData }, ref) => {
     const [title, setTitle] = useState(currentData.title || '');
@@ -18,85 +21,50 @@ const StepOneContent = React.forwardRef(({ onNextStep, currentData }, ref) => {
     useImperativeHandle(ref, () => ({
         getData: () => {
             return { title, description, category };
-        }
+        },
     }));
 
     return (
-        <div className="flex flex-col items-start justify-start gap-6 text-gray-800">
-            <div className="flex flex-col items-start justify-start">
-                <label className="relative leading-[24px] font-semibold inline-block w-[120px]">
-                    Kategori
-                </label>
-                <div className="relative text-sm leading-[20px] text-blue-500 italic text-opacity-50">
+        <div className="flex flex-col gap-2 md:gap-4 text-gray-800">
+            {/* Kategori */}
+            <div className="flex flex-col ">
+                <label className="font-semibold text-base md:text-lg">Kategori</label>
+                <div className="text-sm text-blue-500 italic text-opacity-50">
                     Pilih kategori acara Anda.
                 </div>
-                <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:gap-8">
-                    <button
-                        className={`rounded-md ${
-                            category === 'pre-order'
-                                ? 'p-2 bg-blue-500 shadow-md font-medium text-lg text-blue-50 border-4 border-blue-200'
-                                : 'p-2 bg-blue-300 shadow-md font-medium text-lg text-blue-50'
-                        }`}
-                        onClick={() => handleCategoryClick('pre-order')}
-                    >
-                        Si Kece Pre-Order
-                    </button>
-                    <button
-                        className={`rounded-md ${
-                            category === 'arisan'
-                                ? 'p-2 bg-blue-500 shadow-md font-medium text-lg text-blue-50 border-4 border-blue-200'
-                                : 'p-2 bg-blue-300 shadow-md font-medium text-lg text-blue-50'
-                        }`}
-                        onClick={() => handleCategoryClick('arisan')}
-                    >
-                        Arisan Canggih
-                    </button>
-                    <button
-                        className={`rounded-md ${
-                            category === 'travel'
-                                ? 'p-2 bg-blue-500 shadow-md font-medium text-lg text-blue-50 border-4 border-blue-200'
-                                : 'p-2 bg-blue-300 shadow-md font-medium text-lg text-blue-50'
-                        }`}
-                        onClick={() => handleCategoryClick('travel')}
-                    >
-                        Healing Lah
-                    </button>
+                <div className="flex gap-1 md:gap-2 flex-wrap ">
+                    <div className="p-col">
+                        <Button label="Si Kece Pre-Order" className={`font-poppins text-sm shadow ${category === 'pre-order' ? 'p-button-info font-medium' : ' bg-blue-600 opacity-60'}`} onClick={() => handleCategoryClick('pre-order')} />
+                    </div>
+                    <div className="p-col">
+                        <Button label="Arisan Canggih" className={`font-poppins text-sm shadow ${category === 'arisan' ? 'p-button-info font-medium' : 'bg-blue-600 opacity-60'}`} onClick={() => handleCategoryClick('arisan')} />
+                    </div>
+                    <div className="p-col">
+                        <Button label="Healing Lah" className={`font-poppins text-sm shadow ${category === 'travel' ? 'p-button-info font-medium' : 'bg-blue-600 opacity-60'}`} onClick={() => handleCategoryClick('travel')} />
+                    </div>
                 </div>
             </div>
 
-            {/* Bagian Nama Topik */}
-            <div className="flex flex-col items-start justify-start mt-4">
-                <label className="relative leading-[24px] font-semibold inline-block w-[120px]" htmlFor="topicName">
+            {/* Nama Topik */}
+            <div className="flex flex-col">
+                <label className="font-semibold text-base md:text-lg" htmlFor="topicName">
                     Nama Topik
                 </label>
-                <div className="relative text-sm leading-[20px] text-blue-500 italic text-opacity-50">
+                <div className="text-sm text-blue-500 italic text-opacity-50">
                     Berikan nama untuk topik acara Anda.
                 </div>
-                <input
-                    type="text"
-                    id="title"
-                    className="mt-2 border rounded p-2 w-full sm:w-[600px]"
-                    value={title}
-                    placeholder="Silahkan Isi Judul/Nama Topik Event Anda"
-                    onChange={(e) => setTitle(e.target.value)}
-                />
+                <InputText id="namaTopik" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
             </div>
 
-            {/* Bagian Deskripsi */}
-            <div className="flex flex-col items-start justify-start mt-4">
-                <label className="relative leading-[24px] font-medium inline-block w-[120px]" htmlFor="description">
+            {/* Deskripsi */}
+            <div className="flex flex-col">
+                <label className="font-semibold text-base md:text-lg" htmlFor="description">
                     Deskripsi
                 </label>
-                <div className="relative text-sm leading-[20px] text-blue-500 italic text-opacity-50">
+                <div className="text-sm text-blue-500 italic text-opacity-50">
                     Jelaskan detail acara Anda.
                 </div>
-                <textarea
-                    id="description"
-                    className="mt-2 border rounded p-2 w-full sm:w-[600px] h-[120px]"
-                    value={description}
-                    placeholder="Silahkan isi dari Deskripsi Acara anda dengan Sedetail detailnya"
-                    onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
+                <InputTextarea id="deskripsi" value={description} onChange={(e) => setDescription(e.target.value)} rows={5} cols={30} />
             </div>
         </div>
     );

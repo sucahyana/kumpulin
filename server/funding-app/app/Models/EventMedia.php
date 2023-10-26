@@ -7,7 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,6 +15,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use OwenIt\Auditing\Contracts\Auditable;
+use PUGX\Shortid\Factory;
+use PUGX\Shortid\Shortid;
 
 
 /**
@@ -34,7 +36,7 @@ use OwenIt\Auditing\Contracts\Auditable;
  */
 class EventMedia extends Model implements AuthenticatableContract,Auditable
 {
-    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,uuid,Authenticatable;
+    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,Authenticatable;
     use SoftDeletes;
 
     protected $table = 'event_media';
@@ -49,5 +51,21 @@ class EventMedia extends Model implements AuthenticatableContract,Auditable
     public function events()
     {
         return $this->belongsTo(Events::class ,'id_event');
+    }
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $factory = new Factory();
+            $factory->setLength(16);
+            Shortid::setFactory($factory);
+            $model->{$model->getRouteKeyName()} = Shortid::generate();
+        });
     }
 }

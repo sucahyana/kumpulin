@@ -1,10 +1,8 @@
 <?php
 
-
 namespace App\Models;
 
 use Carbon\Carbon;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,38 +13,12 @@ use Laravel\Sanctum\HasApiTokens;
 use OwenIt\Auditing\Contracts\Auditable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use PUGX\Shortid\Factory;
+use PUGX\Shortid\Shortid;
 
-
-/**
- * Class User
- *
- * @property string $id
- * @property string $name
- * @property string|null $gender
- * @property string $email
- * @property string $telphone
- * @property string $password
- * @property string|null $profile_image
- * @property string|null $cover_image
- * @property string|null $bio
- * @property Carbon|null $birth_date
- * @property string|null $address
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property string|null $deleted_at
- *
- * @property EventHistory $event_history
- * @property EventParticipant $event_participant
- * @property Collection|events[] $events
- * @property Collection|Notification[] $notifications
- * @property Collection|UserContact[] $user_contacts
- *
- * @package App\Models
- */
 class User extends Model implements AuthenticatableContract,Auditable
-
 {
-    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,Uuid,Authenticatable,HasFactory,CanResetPassword;
+    use \OwenIt\Auditing\Auditable,HasApiTokens,Notifiable,Authenticatable,HasFactory,CanResetPassword;
     use SoftDeletes;
 
     protected $table = 'users';
@@ -83,7 +55,6 @@ class User extends Model implements AuthenticatableContract,Auditable
         return $this->hasOne(EventHistory::class, 'id_user');
     }
 
-
     public function event_participant()
     {
         return $this->hasOne(EventParticipant::class, 'id_user');
@@ -99,19 +70,30 @@ class User extends Model implements AuthenticatableContract,Auditable
         return $this->hasMany(Notification::class);
     }
 
-
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
     public function contacts()
     {
         return $this->hasMany(UserContact::class,'id_user', 'id');
     }
+
     public function getRouteKeyName()
     {
         return 'id';
     }
 
+    protected static function boot()
+    {
+        parent::boot();
 
+        static::creating(function ($model) {
+            $factory = new Factory();
+            $factory->setLength(16);
+            Shortid::setFactory($factory);
+            $model->{$model->getRouteKeyName()} = Shortid::generate();
+        });
+    }
 }

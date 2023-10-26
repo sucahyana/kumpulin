@@ -25,7 +25,7 @@ class CreateAuditsTable extends Migration
             $table->uuid($morphPrefix . '_id')->nullable();
             $table->string('event');
 
-            $table->char('auditable_id', 36)->nullable();
+            $table->char('auditable_id', 16)->nullable();
             $table->string('auditable_type')->nullable();
 
             $table->text('old_values')->nullable();

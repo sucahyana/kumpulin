@@ -3,18 +3,19 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Auth;
+use PUGX\Shortid\Factory;
+use PUGX\Shortid\Shortid;
 
 
 class EventParticipant extends Model implements AuthenticatableContract, \OwenIt\Auditing\Contracts\Auditable
 {
-    use \OwenIt\Auditing\Auditable, HasApiTokens, Notifiable, Uuid, Authenticatable;
+    use \OwenIt\Auditing\Auditable, HasApiTokens, Notifiable, Authenticatable;
 
     const STATUS_BERGABUNG = 'Bergabung';
     const STATUS_PENDING = 'Ingin ikut Acara';
@@ -127,7 +128,18 @@ class EventParticipant extends Model implements AuthenticatableContract, \OwenIt
             $payment="0";
             $paymentDefault->payment_amount = $payment;
         });
+        static::creating(function ($model) {
+            $factory = new Factory();
+            $factory->setLength(16);
+            Shortid::setFactory($factory);
+            $model->{$model->getRouteKeyName()} = Shortid::generate();
+        });
     }
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
+
 
 }
 
