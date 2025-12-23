@@ -12,7 +12,6 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
-        "laravel/telescope": "^4.16",
         "laravel/tinker": "^2.8",
         "owen-it/laravel-auditing": "^13.5",
         "predis/predis": "^2.2",
