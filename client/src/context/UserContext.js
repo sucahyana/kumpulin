@@ -1,5 +1,5 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {fetchUserData} from "../store/actions/user.js";
 
 const UserContext = React.createContext();

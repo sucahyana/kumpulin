@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\User;
+
 class UsersTableSeeder extends Seeder
 {
 
@@ -17,15 +19,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-
-
-        DB::table('users')->insert([
-            'name' => Str::random(10),
-            'email' => Str::random(10).'@gmail.com',
-            'password' => Hash::make('password'),
+        DB::table('users')->delete();
+        User::create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+            'gender' => 'male',
+            'password' => 'password',
         ]);
-
-
-
     }
 }

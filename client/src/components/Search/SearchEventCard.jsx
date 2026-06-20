@@ -5,9 +5,9 @@ import {Button} from "primereact/button";
 import {formatCurrency} from "../../utils/currencyFormatter.js";
 
 const SearchEventCard = ({event}) => {
-    if (!event) return null;
-
     const navigate = useNavigate();
+
+    if (!event) return null;
 
     const handleCardClick = () => {
         navigate(`/event/${event.code_event}`);
