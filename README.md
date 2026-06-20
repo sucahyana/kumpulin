@@ -4,6 +4,34 @@ Kumpulin is a premium, modern web application designed to facilitate social even
 
 ---
 
+## 🔍 Core Features & Business Flows
+
+Kumpulin (derived from the Indonesian word *"kumpul"*, meaning to gather or collect) is structured around the lifecycle of community meetups and joint financial contributions:
+
+1. **🔒 Secure User Authentication & Profiles**:
+   - Accounts are managed via Sanctum-secured SPA tokens.
+   - Users maintain detailed custom profiles containing contact records, bios, avatars, and cover layouts.
+
+2. **📅 Event Creation & Code-based Access**:
+   - Hosts spawn events detailing the gathering's scope, media uploads, and target contribution amount per participant (`amount_person`).
+   - Each event automatically generates a unique, human-friendly `eventCode` (shortid) for secure and convenient sharing.
+
+3. **🤝 Participant Request & Approval Pipeline**:
+   - Invitees join by entering the event code and optionally providing a note or payment reference.
+   - Hosts review pending applications, with the ability to dynamically **Approve** or **Reject** participants.
+
+4. **💸 Joint Payment & Contribution Tracking**:
+   - Hosts log and verify actual financial transfers against each participant's target quota (`payment_amount`).
+   - Progress metrics update in real-time, calculating overall event collection achievements.
+
+5. **💬 Live Event Chat**:
+   - Integrated communication channels allow participants to coordinate within each event lobby, powered by real-time event broadcasting.
+
+6. **📜 Event History Logs**:
+   - Tracks audit trails of status updates, participant joins, and general changes to preserve event integrity.
+
+---
+
 ## 🎨 Screenshots & Mockups
 
 ### 📊 Dashboard Workspace
